@@ -4,6 +4,7 @@
   \texttt{Xavier.TorrentGorjon@os3.nl}
 }
 \title{Protecting against relay attacks}
+
 \begin{document}
 
 
@@ -35,19 +36,40 @@ Xavier Torrent Gorj\'{o}n\\
 \section{Introduction}
 As technology progresses, many traditional devices are improved with wireless features, aimed to improve user's comfort. Examples of these improvements can be found in access control (car keys, company IDs, public transportation cards) or credit card payment systems, among others.
 
+Most of these systems are vulnerable to relay attacks, in which an attacker simply forwards messages between parties. These are specially dangerous in some cases, as they can provide unauthorized access even if the communication is fully encrypted and protected. A typical and well-documented example of this kind of attack are cars with PKES, in which an attacker can get into a victim's car by relaying the transmission between the car and the key at a longer distance than it is supposed to work. Some non-wireless platforms and services are also vulnerable to this kind of attacks, although they tend to be more difficult to perform.
 
-Most of these systems are vulnerable to relay attacks, in which an attacker simply forwards messages between parties. These are specially dangerous in some cases, as they can provide unauthorized access even if the communication is fully encrypted and protected.
-\section{Related work}
-Related work here.
+This project will attempt to provide recommendations on how to make those systems more secure, either by making the systems less predictable or by proposing features that can block partially or totally some of the attacks.
+
+\section{Related Work}
+There are many research project studying relay attacks on different services and applications, such as \cite{carentry, contactless}. There is large number of systems vulnerable to these attacks, and due the limited time available for this project we will have to focus on some of them, aiming for the most relevant and/or commonly used.
+
+Another interesting source of information will be studies on how location systems can be secured, as in \cite{securepos}. Using this as an starting point we will attempt to provide practical solutions to the presented problems.
+
+\section{Project Scope and Approach}
+As stated in the Related Work section, there are a lot of real world utilities that are vulnerable to relay attacks. There are extreme variations on the limitations and conditions of these systems, meaning that a single solution will most probably not fit all of them. The scope of the project might vary depending on the time restrictions and how fast the progression is.
+
+This project will be a theoretical approach on how to fix these issues. Although practical experiments would definitely be useful, time is the heaviest constrain and it is infeasible to acquire or develop the platforms to test the systems on the field. However, this would surely be an interesting future work.
+
 \section{Research Questions}
 Research Questions here.
-\section{Approach}
-Approach and methodology here.
+
 \section{Planning}
 Planing here.
+
 \section{Expected results}
 Expected results here.
+
 \section{Ethical considerations}
-Ethical paragraph here. Bonus stage!
+The project will be a theoretical study that will not be using any kind of user data, and solutions provided will be based upon theoretical models. This means we will not be running into any kind of ethical issues.
+
 \section{References}
+\begin{thebibliography}{99}
+\bibitem{carentry}
+A. Francillon, B. Danev, S. Capkun, \emph{Relay Attacks on Passive Keyless Entry and Start Systems in Modern Cars}
+\bibitem{contactless}
+J. van den Breekel, \emph{A Security Evaluation and Proof-of-Concept Relay Attack on Dutch EMV Contactless Transactions}, October 2014
+\bibitem{securepos}
+S. Capkun, J. Hubaux, \emph{Secure Positioning in Wireless Networks}
+\end{thebibliography}
+
 \end{document}

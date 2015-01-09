@@ -46,11 +46,11 @@ Most communication systems can be secured by using encryption protocols when the
 
 However, attackers can still make use of attacks based on relaying information to achieve goals such as system malfunction or even unauthorized access. There are many publications providing practical and real world examples about this problem, such as \cite{francillon2011relay, hancke2005practical, hu2006wormhole}. These publications show that this is a general problem not bound to specific implementations of hardware or software, and depending on the constrains of the used systems (power requirement, size, environment conditions) they can be quite challenging to solve.
 
-There have been many studies providing solutions to these problems, using distance-bonding protocols such as the proposed in \cite{brands1994distance} and \cite{rasmussen2010realization}. These protocols prevent verifying terminals from getting relayed messages reporting legitimate users to be closer than they really are.
+There have been many studies providing solutions to these problems, using distance-bounding protocols such as the proposed in \cite{brands1994distance} and \cite{rasmussen2010realization}. These protocols prevent verifying terminals from getting relayed messages reporting legitimate users to be closer than they really are.
 
-However, we couldn't find in the available literature solutions for the opposite problem: malicious users relaying attacks to claim that a legitimate user is further away than he really is. Possible interesting study cases regarding this issue might surveillance drones or automated cars.
+However, we could not find in the available literature solutions for the opposite problem: malicious users relaying attacks to claim that a legitimate user is further away than he really is. Possible interesting study cases regarding this issue might surveillance drones or automated cars.
 
-Imagine a situation where a squadron of flying drones were used to explore an area. To make sure all the area is being checked, these devices must rely on some kind of protocol to exchange information about their positions so that the whole squadron can reassign positions or change formation as obstacles appear. GPS signals can be used to avoid relay attacks forging distance reports, but it's not a system that we can trust (drones working inside a warehouse, or being on a hostile environment where GPS signals are blocked), so the whole system should be independent from external positioning information. If the drones' system to report relative position to other drones is tempered somehow, it could lead to an attacker successfully preventing an area from being explored or even forcing two or more drones to crash together by making them believe they are further away than they really are.
+Imagine a situation where a squadron of flying drones were used to explore an area. To make sure all the area is being checked, these devices must rely on some kind of protocol to exchange information about their positions so that the whole squadron can reassign positions or change formation as obstacles appear. GPS signals can be used to avoid relay attacks forging distance reports, but it is not a system that can be trusted (drones working inside a warehouse, or being on a hostile environment where GPS signals are blocked), so the whole system should be independent from external positioning information. If the drones' system to report relative position to other drones is tempered somehow, it could lead to an attacker successfully preventing an area from being explored or even forcing two or more drones to crash together by making them believe they are further away than they really are.
 
 It is easier to find an exploitable situation on automated car systems, as usually they loose their GPS signals without being in an obviously hostile environment, due \emph{natural} causes such driving inside a tunnel, being on a neighbourhood with tall buildings or stopping at an underground parking.
 
@@ -69,7 +69,7 @@ In this project we will attempt to answer two main questions:\\
 
 \emph{How feasible it is to perform relay attacks on MANETs which forge reports stating increased distances than the real ones?}\\
 
-\emph{To what extend can we detect, prevent, or provide countermeasures against those attacks?}\\
+\emph{To what extent can we detect, prevent, or provide countermeasures against those attacks?}\\
 
 Answering the first question is a pre-requisite to narrow down the scope of the project and make decisions on how to proceed with the investigation. It is important to study which conditions and attack paths could be available in order to provide a complete picture of the problem.
 
@@ -86,7 +86,7 @@ The assigned time for this project are four weeks, from January 5th to January 3
 
 \section{Expected results}
 
-By the end of this project we expect to provide one or more theoretical solutions and countermeasures to protect MANET from relay attacks on their communication systems that lead to nodes believing they are further apart than what they really are.
+By the end of this project we expect to provide one or more theoretical solutions and countermeasures to protect MANET from relay attacks on their communication systems that lead to nodes believing they are further apart than where they really are.
 
 \section{Ethical considerations}
 

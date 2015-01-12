@@ -1,0 +1,23 @@
+------------------
+Morning discussion:
+
+-> Try to focus on one study case or at least provide an insight on that.
+-> Explain why this is a problem, leave no room for questions.
+
+-> Consider natural noise in communications.
+-> If nonexistant in literature, define problem.
+------------------
+
+
+Project Scope:
+
+-> Study case.
+
+Generalization on MANETs (Mobile Ad-Hoc NETworks). Finding a more focused study case is interesting.
+
+Drones in a warehouse, deployed to distribute packages.
+
+- Can't rely on GPS signals.
+- Assume third party positioning is not feasible (filling the streets with positioning devices to triangulate...? Seems not to be reasonable).
+- Drones can have memory of their own position as they can know where did they start their route and the path they've taken, but have no information about this regarding other drones.
+

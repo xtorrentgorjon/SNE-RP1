@@ -17,7 +17,30 @@ Generalization on MANETs (Mobile Ad-Hoc NETworks). Finding a more focused study 
 
 Drones in a warehouse, deployed to distribute packages.
 
-- Can't rely on GPS signals.
+- Can't rely on civilian GPS signals [1].
 - Assume third party positioning is not feasible (filling the streets with positioning devices to triangulate...? Seems not to be reasonable).
-- Drones can have memory of their own position as they can know where did they start their route and the path they've taken, but have no information about this regarding other drones.
+- Drones can have memory of their own position as they can know where did they start their route and the path they've taken (and also using GPS only for themselves), but have no information about this regarding other drones.
+- Jamming signals from the drones might be required. If drones are aware that other drones *should* be nearby, a DoS attack might cause them to shut down or take a safety path aborting their planning. However a relay attack that made them think that another expected drone is nearby but not as close as it really is could lead to a crash between them.
+
+
+
+
+
+
+--------------
+Literature:
+
+
+[1]
+@article{jafarnia2012gps,
+  title={GPS vulnerability to spoofing threats and a review of antispoofing techniques},
+  author={Jafarnia-Jahromi, Ali and Broumandan, Ali and Nielsen, John and Lachapelle, G{\'e}rard},
+  journal={International Journal of Navigation and Observation},
+  volume={2012},
+  year={2012},
+  publisher={Hindawi Publishing Corporation}
+}
+
+
+
 

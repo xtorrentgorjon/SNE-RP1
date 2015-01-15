@@ -1,3 +1,8 @@
+==================================
+
+12/01/2014
+
+
 ------------------
 Morning discussion:
 
@@ -23,6 +28,22 @@ Drones in a warehouse, deployed to distribute packages.
 - Jamming signals from the drones might be required. If drones are aware that other drones *should* be nearby, a DoS attack might cause them to shut down or take a safety path aborting their planning. However a relay attack that made them think that another expected drone is nearby but not as close as it really is could lead to a crash between them.
 
 
+
+
+
+
+==================================
+
+14/01/2014
+
+
+Environment where drones must work and take into consideration the position of other drones:
+
+- Centralized access.
+- Drones working cooperatively.
+- Attack on the system might require tempering with the hardware. This implies that other higher level security protocols might be needed to be broken, or that the attacker is someone trusted. Either way the hardware tempering is not complex and only requires to add additional hardware to the device, not removing or changing anything already existing on it. Most of this tempering has to do with the antennas and the frequency range they transmit to.
+
+- Drones using radiofrequency positioning can use a minimum one antenna to send signals and three to receive signals from other drones (or likewise, three senders and one receiver).
 
 
 

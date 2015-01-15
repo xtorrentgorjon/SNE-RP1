@@ -1,0 +1,12 @@
+01.- Title page
+02.- Abstract
+03.- Introduction
+04.- Previous work
+05.- Methodology
+06.- Attack scenarios
+07.- Fighting forged increased distance reports
+08.- Conclusions
+09.- Other considerations
+10.- Future work
+11.- References
+12.- Appendix

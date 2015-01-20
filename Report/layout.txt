@@ -54,6 +54,7 @@
 08.- Conclusions
  - Consider the theoretical assumptions of the project
  - Given the proposed solutions, introduce and explain the implications
+
 09.- Future work
  - Briefly talk about the need of a more practical study with real hardware
  - ...?
@@ -62,4 +63,5 @@
 
 11.- References
 
-12.- Appendix (Figures?)
+12.- Appendix (Figures? Planification? Commentary on the work done at KPMG
+     and the issues that showed up during the project?)

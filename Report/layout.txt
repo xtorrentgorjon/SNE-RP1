@@ -8,14 +8,14 @@
  - Conclusions
 
 03.- Introduction
+ - Introduce relay attacks related to distance reporting.
  - Introduction to distance bounding by time of travel. Explain other methods and why
    this is the most reliable or interesting case.
      > Signal intensity
      > Ultrasound
-     > Radiofrequency
- - Introduce relay attacks related to distance reporting
+     > Radiofrequency (our study case, extended introduction for this one)
  - Explain why faking decreased distance reports is not feasible but faking
-   increased reports is.
+   increased reports is (on our study case).
  - Explain why increasing the reported distance between two parties can be a
    problem.
  - Explain the theoretical attack case. Introduce and notice its difficulties
@@ -42,7 +42,7 @@
    > Drones (multiple cases)
      % Cooperative working
      % Area surveillance
-   > Automatically driven cards
+   > Automatically driven cars
    > Boats & harbors
    > ...?
  - For each case, state clearly the assumptions made and its limitations

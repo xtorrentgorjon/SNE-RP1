@@ -1,12 +1,65 @@
 01.- Title page
-02.- Abstract
+
+02.- Abstract (200 words?)
+ - Motivation
+ - Problem statement
+ - Approach
+ - Results
+ - Conclusions
+
 03.- Introduction
+ - Introduction to distance bounding by time of travel. Explain other methods and why
+   this is the most reliable or interesting case.
+     > Signal intensity
+     > Ultrasound
+     > Radiofrequency
+ - Introduce relay attacks related to distance reporting
+ - Explain why faking decreased distance reports is not feasible but faking
+   increased reports is.
+ - Explain why increasing the reported distance between two parties can be a
+   problem.
+ - Explain the theoretical attack case. Introduce and notice its difficulties
+   as a practical attack.
+ - Talk about other systems that are used for location (GPS, RADAR) and
+   justify how we use them.
+ - Present the layout of the rest of the document
+
 04.- Previous work
+ - Distance-bounding on access control systems.
+ - Studies on MANETS (related to distance and cooperation protocols)
+
 05.- Methodology
-06.- Attack scenarios
+ - Explain the research done
+ - How the research questions were defined
+   > Justify the need for certain assumptions
+   > Little explanation on the planification (?)
+
+06.- Feasibility of the attack and interesting attack scenarios
+ - Explain the assumptions made
+   > Feasibility of the jamming and relaying
+   > ...?
+ - Present diverse attack scenarios.
+   > Drones (multiple cases)
+     % Cooperative working
+     % Area surveillance
+   > Automatically driven cards
+   > Boats & harbors
+   > ...?
+ - For each case, state clearly the assumptions made and its limitations
+
 07.- Fighting forged increased distance reports
+ - Present the solutions
+ - Multiple antenas and shared knowledge
+
 08.- Conclusions
-09.- Other considerations
-10.- Future work
+ - Consider the theoretical assumptions of the project
+ - Given the proposed solutions, introduce and explain the implications
+09.- Future work
+ - Briefly talk about the need of a more practical study with real hardware
+ - ...?
+
+10.- Acknowledgements
+
 11.- References
-12.- Appendix
+
+12.- Appendix (Figures?)

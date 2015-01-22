@@ -48,6 +48,10 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sed diam metus. Qui
 
 \newpage
 
+\tableofcontents
+
+\newpage
+
 \section{Introduction}
 
 Communications between machines face many challenges when the transmitted information needs to be protected. Most communications can prove to be valuable attack points for third parties that want to recover, modify, block or otherwise manipulate the original message sent for personal profit. Part of these attacks can be prevented by using end to end encryption and signature of the data. However relay attacks cannot be prevented just by using cryptographic algorithms.
@@ -64,7 +68,7 @@ There are many papers available presenting solutions to distance bounding proble
 
 Later on, we will require to make some assumptions and justifications on our investigation based on the characteristics of GPS signals. Many studies focus on the feasibility of intentional attacks against GPS systems, as \cite{warner2003gps, wen2005countermeasures, jafarnia2012gps}. These studies conclude that, even though spoofing is hard with the solutions they propose, it is not impossible.
 
-This study is closely related to the field of MANETs (Mobile Ad-hoc NETworks), and as such, literature available in this topic is of our interest. In particular, wormhole attacks (\cite{hu2006wormhole, maheshwari2007detecting}) are a specific type of relay attack that, while being different than the ones we will study in this document, provide insight to our investigation as they are closely related.
+This study is closely related to the field of MANETs (Mobile Ad-hoc NETworks), and as such, literature available in this topic is of our interest. In particular, wormhole attacks (\cite{hu2006wormhole, maheshwari2007detecting, goyal2010literature}) are a specific type of relay attack that, while being different than the ones we will study in this document, provide insight to our investigation as they are closely related.
 
 
 \section{Research Questions}
@@ -98,13 +102,19 @@ There will be no practical exploration on the issues, as that kind of study is o
 
 \section{Distance bounding and GPS}
 
-Introduction to distance bounding. Explain available methods and why readiofrequency is the most reliable method. [at least 1 paragraph for each one. 2 or 3 for radiofrequency]
+In this section we will discuss both distance bounding protocols and the GPS system. Both of them are extremely relevant topics to our research. First we will explain the current distance bounding protocols, as we will use them as a starting point for our research. Then we will move onto GPS, and explain why systems shouldn't rely completely on it, hence the need to develop more powerful distance bounding protocols for our study cases.
 
-- Signal intensity
+\subsection{Distance bounding}
 
-- Ultrasound
+Distance bounding protocols were developed as a response to relay attacks that attempt to fool systems that validate an users proximity to a validation point. Common scenarios of these applications are found in access control systems, such as smartcards to access buildings or cars using remote passive keys.
 
-- Radiofrequency (extended explanation on this one as it is the focus of our research)
+These attacks try to use properties of the systems used in the communications (such as signal intensity or message time of flight (ToF)) to validate the proximity of users. Based on the work of \citeauthor{capkun2006secure} in \cite{capkun2006secure}, we will proceed to briefly discuss these methods:
+
+\begin{description}
+  \item[Signal Intensity] Signal intensity protocols try to achieve proper location of other nodes by measuring the received signal strength. Previous work available in the public literature, such as the research by \citeauthor{seshadri2005bayesian} in \cite{seshadri2005bayesian} proves the usefulness of this location system. Even though attacks on this systems are hard to perform \cite{sheng2008detecting}, the defences against them rely mostly on anomaly detection. The reliability of these systems can be decreased in heavily adverse situations, and the ToF methods discussed next provide a higher degree of security.
+  \item[Ultrasound ToF] Ultrasound ToF measures the round-trip time of messages sent and received from the parties measuring the distance between them. This does not depend on the signal strength for the measurement, although ultrasound-based ToF has the latent vulnerability that other methods such as radio frequency or optical wires attackers can surpass the speed of the ultrasound communication, effectively being able to relay information faster than the legitimate infrastructure.
+  \item[Radio ToF] Radio-based ToF uses the same method as ultrasound ToF to perform the distance check. The key of the success of this method is that the information transmitted travels at speeds near the speed of light, meaning there is no physical way to fake one node is closer than it really is. Practical studies on this method \cite{rasmussen2010realization} developed hardware that can perform the operations required under 1ns, meaning that the maximum theoretical distance an attacker can shorten its reported distance is under 15cm. \ldots
+\end{description}
 
 Explain why faking decreased distance reports is not feasible but faking increased reports is (on our study case). [1 paragraph]
 
@@ -159,9 +169,6 @@ Briefly talk about the need of a more practical study with real hardware [1 para
 
 \printbibliography
 
-** bibliography goes here **
-
-** appendix goes here **
 
 %%% APPENDIX
 

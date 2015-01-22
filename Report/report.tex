@@ -50,25 +50,22 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sed diam metus. Qui
 
 \section{Introduction}
 
-Introduction to relay attacks. Focus on fake distance reporting [1-2 paragraphs]
+Communications between machines face many challenges when the transmitted information needs to be protected. Most communications can prove to be valuable attack points for third parties that want to recover, modify, block or otherwise manipulate the original message sent for personal profit. Part of these attacks can be prevented by using end to end encryption and signature of the data. However relay attacks cannot be prevented just by using cryptographic algorithms.
 
-Introduction to distance bounding. Explain available methods and why readiofrequency is the most reliable method. [at least 1 paragraph for each one. 2 or 3 for radiofrequency]
+Relay attacks consist on the mere reception and replay of information. Although at first this might seem harmless, many systems become vulnerable if that relaying of information is not noticed. One scenario that can be used as an example of the threat these attacks represent are access control systems, in which a device is used to prove that a user is within a certain distance from a validator through a challenge-response protocol. On unprotected implementations of these access control systems, an attacker can relay the challenge from the validator to a valid user who is not in range and relay its answer back to the validator, effectively bypassing distance validation. Practical attacks on this kind of systems have been demonstrated on various studies, as in \cite{francillon2011relay, francis2010practical, hancke2005practical, markantonakis2012practical}.
 
-- Signal intensity
-
-- Ultrasound
-
-- Radiofrequency (extended explanation on this one as it is the focus of our research)
-
-Explain why faking decreased distance reports is not feasible but faking increased reports is (on our study case). [1 paragraph]
-
-Present the layout of the remaining of the document. Comment what each section is and what is going to be discussed on every one of them. [1 paragraph]
+In this paper, we will first discuss the relay attacks used to forge fake location positions, focusing on the countermeasures against them. We will then focus on attacks forging increased distance reports, the feasibility of these attacks and propose solutions to them. In Section 2 we will discuss the available literature on this topic. We will present on Section 3 a more detailed explanation on the research questions this project aims to answer. Following on Section 4 we will explain the methodology used in this study. Sections 5 and 6 will discuss the actual results from our research questions, after which we will provide conclusions about the results gathered in Section 7.
 
 \section{Related Work}
 
-Distance-bounding on access control systems. [1-2 paragraphs]
+Relay attacks have been for long, and continue to be, an extensive field of research, as technologies and devices are shifting to a more mobile-focused paradigm. Many old procedures are being enhanced with wireless features, such as credit cards and car keys.
 
-Studies on MANETS (related to distance and cooperation protocols). [1-2 paragraphs]
+There are many papers available presenting solutions to distance bounding problems, as \cite{brands1994distance, tu2007rfid, rasmussen2010realization}. All of these studies are used as a base for others in a constant iteration to improve the protocols. Practical studies in this field tend to test the vulnerabilities on real applications, such as \cite{francillon2011relay, francis2010practical, hancke2005practical, markantonakis2012practical, vandenbreekel2014relay}. Although all that research refers to forging decreased distance reports, it has been deeply useful to our research as an starting point and inspiration.
+
+Later on, we will require to make some assumptions and justifications on our investigation based on the characteristics of GPS signals. Many studies focus on the feasibility of intentional attacks against GPS systems, as \cite{warner2003gps, wen2005countermeasures, jafarnia2012gps}. These studies conclude that, even though spoofing is hard with the solutions they propose, it is not impossible.
+
+This study is closely related to the field of MANETs (Mobile Ad-hoc NETworks), and as such, literature available in this topic is of our interest. In particular, wormhole attacks (\cite{hu2006wormhole, maheshwari2007detecting}) are a specific type of relay attack that, while being different than the ones we will study in this document, provide insight to our investigation as they are closely related.
+
 
 \section{Research Questions}
 
@@ -91,6 +88,16 @@ Explain how this is a theoretical study and that great part of it corresponds to
 \section{Feasibility of forged increased distance report attacks}
 
 Answer the first research question.
+
+Introduction to distance bounding. Explain available methods and why readiofrequency is the most reliable method. [at least 1 paragraph for each one. 2 or 3 for radiofrequency]
+
+- Signal intensity
+
+- Ultrasound
+
+- Radiofrequency (extended explanation on this one as it is the focus of our research)
+
+Explain why faking decreased distance reports is not feasible but faking increased reports is (on our study case). [1 paragraph]
 
 Explain why increasing the reported distance between two parties can be a problem. [1-3 paragraphs]
 

@@ -48,61 +48,63 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sed diam metus. Qui
 
 \newpage
 
+
+
+
+
 \tableofcontents
+
+
+
+
 
 \newpage
 
+
+
+
+
 \section{Introduction}
+\label{sec:introduction}
 
 Communications between machines face many challenges when the transmitted information needs to be protected. Most communications can prove to be valuable attack points for third parties that want to recover, modify, block or otherwise manipulate the original message sent for personal profit. Part of these attacks can be prevented by using end to end encryption and signature of the data. However relay attacks cannot be prevented just by using cryptographic algorithms.
 
 Relay attacks consist on the mere reception and replay of information. Although at first this might seem harmless, many systems become vulnerable if that relaying of information is not noticed. One scenario that can be used as an example of the threat these attacks represent are access control systems, in which a device is used to prove that a user is within a certain distance from a validator through a challenge-response protocol. On unprotected implementations of these access control systems, an attacker can relay the challenge from the validator to a valid user who is not in range and relay its answer back to the validator, effectively bypassing distance validation. Practical attacks on this kind of systems have been demonstrated on various studies, as in \cite{francillon2011relay, francis2010practical, hancke2005practical, markantonakis2012practical}.
 
-In this paper, we will first discuss the relay attacks used to forge fake location positions, focusing on the countermeasures against them. We will then focus on attacks forging increased distance reports, the feasibility of these attacks and propose solutions to them. In Section 2 we will discuss the available literature on this topic. We will present on Section 3 a more detailed explanation on the research questions this project aims to answer. Following on Section 4 we will explain the methodology used in this study. In Section 5 we will briefly present results and conclusions from our research in the available literature about distance bounding protocols, GPS and radar detection. Section 6 will discuss the actual results from our research questions, after which we will provide conclusions about the results gathered in Section 7.
+In this paper, we will first discuss the relay attacks used to forge fake location positions, focusing on the countermeasures against them. We will then focus on attacks forging increased distance reports, the feasibility of these attacks and propose solutions to them. In Section \ref{sec:relatedwork} we will discuss the available literature on this topic. In Section \ref{sec:background} we will briefly present results and conclusions from our research in the available literature about distance bounding protocols, GPS, radar detection and Inertial Navigation System. We will present on Section \ref{sec:researchquestions} a more detailed explanation on the research questions this project aims to answer. Following on Section \ref{sec:methodology} we will explain the methodology used in this study. Section \ref{sec:results} will discuss the actual results from our research questions, after which we will provide conclusions about the results gathered in Section \ref{sec:conclusions}.
+
+
+
+
+
+
 
 \section{Related Work}
+\label{sec:relatedwork}
 
-Relay attacks have been for long, and continue to be, an extensive field of research, as technologies and devices are shifting to a more mobile-focused paradigm. Many old procedures are being enhanced with wireless features, such as credit cards and car keys.
+Relay attacks have been for long, and continue to be, an extensive field of research, as technologies and devices are shifting to a more mobile-focused paradigm. Many old procedures are being enhanced with wireless features, such as credit cards and car keys. However, it is not possible to find in the available literature studies regarding relay attacks used to fake increased distances between two legitimate nodes. It is the goal of this project to prove that these attacks can prove to be a real threat in real world applications, and how current distance bounding protocols can be enhanced to limit their vulnerability against them.
 
-There are many papers available presenting solutions to distance bounding problems, as \cite{brands1994distance, tu2007rfid, rasmussen2010realization}. All of these studies are used as a base for others in a constant iteration to improve the protocols. Practical studies in this field tend to test the vulnerabilities on real applications, such as \cite{francillon2011relay, francis2010practical, hancke2005practical, markantonakis2012practical, vandenbreekel2014relay}. Although all that research refers to forging decreased distance reports, it has been deeply useful to our research as an starting point and inspiration.
+There is much literature available presenting solutions to distance bounding problems, as \cite{brands1994distance, tu2007rfid, rasmussen2010realization}. All of these studies are used as a base for others in a constant iteration to improve the protocols. As new attacks emerge against distance bounding protocols, new studies are published to fix the deficiencies of the previous work. This project will use part of these studies as a basis for the solutions against the studied relay attacks.
 
-Later on, we will require to make some assumptions and justifications on our investigation based on the characteristics of GPS signals. Many studies focus on the feasibility of intentional attacks against GPS systems, as \cite{warner2003gps, wen2005countermeasures, jafarnia2012gps}. These studies conclude that, even though spoofing is hard with the solutions they propose, it is not impossible.
+There are also many practical studies in the field of distance bounding, which aim to test the vulnerabilities on real applications, such as \cite{francillon2011relay, francis2010practical, hancke2005practical, markantonakis2012practical, vandenbreekel2014relay}. Although all that research refers to forging decreased distance reports and it is not directly used in our research, it has been deeply as an starting point and inspiration.
 
-This study is closely related to the field of MANETs (Mobile Ad-hoc NETworks), and as such, literature available in this topic is of our interest. In particular, wormhole attacks (\cite{hu2006wormhole, maheshwari2007detecting, goyal2010literature}) are a specific type of relay attack that, while being different than the ones we will study in this document, provide insight to our investigation as they are closely related.
+This project will assume certain conditions for the studied attacks. Some assumptions and justifications will be required on the investigation, based on the characteristics of GPS signals. Many studies focus on the feasibility of intentional attacks against GPS systems, as \cite{warner2003gps, wen2005countermeasures, jafarnia2012gps}. These studies conclude that, even though spoofing is hard with the solutions they propose, it is not impossible. With this premise, the goal will be to develop countermeasures against relay attacks without relying on GPS signals.
+
+In a similar way to GPS signals, other systems such as Radar location \cite{cadirci2009rf} and Inertial Navigation Systems \cite{patent:4085440} could be arguably used to prevent this attacks. Using these information sources we will explain why these systems are not reliable neither, reaffirming the need of a modified distance bounding protocol that is not vulnerable to relay attacks.
+
+Finally, this study is closely related to the field of MANETs (Mobile Ad-hoc NETworks), and as such, literature available in this topic is of our interest. In particular, wormhole attacks (\cite{hu2006wormhole, maheshwari2007detecting, goyal2010literature}) are a specific type of relay attack that, while being different than the ones we will study in this document, provide insight to our investigation as they are closely related.
 
 
-\section{Research Questions}
-
-The initial proposal of this project was strongly related to relay attacks on contactless credit cards and automatic car key entry systems. Improving the proposed systems on the work done by \citeauthor{brands1994distance} on \cite{brands1994distance} and \citeauthor{rasmussen2010realization} on \cite{rasmussen2010realization} seemed infeasible for a two week project. Automatic car key entry systems can already be solved by correctly implementing the protocols on these papers, while credit cards require additional hardware performing those operations to be secure.
 
 
-Ultimately, this project aims to answer the following questions:\\
 
-\emph{How feasible are forged increased distance report attacks?}\\
 
-\emph{How can we fight these attacks?}
 
-\subsection{Feasibility of forged increased distance report attacks}
 
-Minimum distance bounding appeared to have many solutions on the current literature. However, we observed that distance bounding regarding upper limits on reported distances was not a subject of research. In this project, we will present some theoretical attacks that could be used on many real world scenarios, and propose variations on the current distance bounding protocols to solve them.
+\section{Background}
+\label{sec:background}
 
-The proposed scenarios are diverse in both context and properties of the systems involved in the communications. We will focus the study from the point of view of systems involving communication between drones, although we will provide solutions that can be extrapolated to other systems as well, such as automatically driven cars.
-
-In this research question, we ultimately aim to explain why these attacks can be dangerous and an interesting topic of research.
-
-\subsection{Fighting forged increased distance reports}
-
-The second research question will focus on providing solutions to the issues stated on the first. Unlike minimum distance bounding protocols, we won't be able to use the speed of light as a fact to develop responses that cannot be faked, which implies that we might not be able to develop a system that completely protects against these increased distance reports. However, we do expect to provide solutions that suppose a meaningful security increase against these attacks.
-
-\section{Methodology}
-
-This project is a theoretical research on a proposed problem. Most of the work will be based on the research and exploration of the current literature on topics related to our research questions. By contrasting information on these sources, we will develop solutions based on modifications of the current systems and protocols.
-
-There will be no practical exploration on the issues, as that kind of study is out of our research scope.
-
-\section{Distance bounding, GPS and radar detection}
-
-In this section we will discuss distance bounding protocols, the GPS system and radar detection. All of them are extremely relevant topics to our research. First we will explain the current distance bounding protocols, as we will use them as a starting point for our research. Then we will move onto GPS, and explain why systems shouldn't rely completely on it, hence the need to develop more powerful distance bounding protocols for our study cases. Lastly, we will discuss the possibility of using radar detection to fight the proposed attack.
+In this section we will discuss distance bounding protocols, the GPS system and radar detection. All of them are extremely relevant topics to our research. First we will explain the current distance bounding protocols, as we will use them as a starting point for our research. Then we will move onto GPS, and explain why systems shouldn't rely completely on it, hence the need to develop more powerful distance bounding protocols for our study cases. Lastly, we will discuss the possibility of using radar detection and Inertial Navigation System to fight the proposed attack.
 
 \subsection{Distance bounding}
 
@@ -130,9 +132,74 @@ Due these problems, he U.S. government actually recommends to always have backup
 
 \subsection{Radar detection}
 
-One way to protect against this kind of Man-In-The-Middle attack could be by attempting to physically detect the attacker.
+One way to protect against this kind of Man-In-The-Middle attack could be by attempting to physically detect the attacker. If an unidentified object is detected between the parties and it is confirmed that it does not belong to the system, security measures could be taken to prevent such relay attacks.
+
+However, recent studies as the one by \citeauthor{cadirci2009rf} in \cite{cadirci2009rf}, state that Radar Cross Section -a measurement used to rate the ability to reflect radar waves by an object- can be heavily decreased employing proper techniques such as the usage of special materials, radiowave-absorbing paint and specific shapes that minimize and disperse radio reflection.
+
+\subsection{Inertial Navigation System}
+
+
+
+
+
+
+
+
+
+\section{Research Questions}
+\label{sec:researchquestions}
+
+As seen in the Related Work section, on the current literature there are no proposals to fight the subset of relay attacks that attempt to fake increased distance reports between legitimate parties. This project will prove that these attacks suppose a real threat, and as such, our first research question will be:\\
+
+\emph{How feasible are forged increased distance report relay attacks?}\\
+
+Additionally, after the demonstration of the possibilities of these attacks, a second research question is considered:\\
+
+\emph{How can these attacks be prevented?}
+
+\subsection{Feasibility of forged increased distance report relay attacks}
+
+Minimum distance bounding appeared to have many solutions on the current literature. However, we observed that distance bounding regarding upper limits on reported distances was not a subject of research. In this project, we will present some theoretical attacks that could be used on many real world scenarios, and propose variations on the current distance bounding protocols to solve them.
+
+The proposed scenarios are diverse in both context and properties of the systems involved in the communications. We will focus the study from the point of view of systems involving communication between drones, although we will provide solutions that can be extrapolated to other systems as well, such as automatically driven cars.
+
+In this research question, we ultimately aim to explain why these attacks can be dangerous and an interesting topic of research.
+
+\subsection{Fighting forged increased distance reports}
+
+The second research question will focus on providing solutions to the issues stated on the first. Unlike minimum distance bounding protocols, we won't be able to use the speed of light as a fact to develop responses that cannot be faked, which implies that we might not be able to develop a system that completely protects against these increased distance reports. However, we do expect to provide solutions that suppose a meaningful security increase against these attacks.
+
+
+
+
+
+
+
+
+
+\section{Methodology}
+\label{sec:methodology}
+
+As stated in the Introduction and the Related Work sections, there are reasons to see relay attacks that fake increased distance reports as a threat.
+
+Using the information gathered and stated in the Background section, we will first study the conditions under which distance bounding systems could be vulnerable to these attacks. We will present many real life applications of distance bounding protocols whose intended functionality could be altered by performing these attacks.
+
+Afterwards, using the mentioned sources of information, variations to the distance bounding protocols will be proposed, in order to effectively reduce the threat these attacks suppose.
+
+Using a theoretical approach, an explanation and evaluation of both the feasibility of these attacks as well as the proposed solutions will be given.
+
+
+
+
+
+
+
+
+
+
 
 \section{Results}
+\label{sec:results}
 
 On this section we will present the results of our research, structured in the form of two research questions.
 
@@ -171,25 +238,56 @@ Present diverse attack scenarios. [at least 1 paragraph per case]
 For each case, state clearly the assumptions made and its limitations
 
 
-\section{Fighting forged increased distance reports}
+\subsection{Fighting forged increased distance reports}
 
 Present the solutions
 
 Multiple antenas and shared knowledge [Various paragraphs (5+), this is the first solution]
 
+
+
+
+
+
+
+
+
+
 \section{Conclusions}
+\label{sec:conclusions}
 
 Consider the theoretical assumptions of the project [1 paragraph]
 
 Given the proposed solutions, introduce and explain the implications [2 or more paragraphs]
 
+
+
+
+
+
+
+
+
+
 \section{Future Work}
+\label{sec:futurework}
 
 Briefly talk about the need of a more practical study with real hardware [1 paragraph]
 
 ...?
 
+
+
+
+
+
+
+
+
+
+
 \section{Acknowledgements}
+\label{sec:acknowledgements}
 
 [2 paragraphs max]
 

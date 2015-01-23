@@ -18,7 +18,7 @@
 \begin{titlepage}
 \center
 \textsc{}\\[1cm]
-\textsc{\LARGE University of Amsterdam}\\[1.5cm]
+\textsc{\LARGE Universiteit van Amsterdam}\\[1.5cm]
 
 \textsc{\Large Research Project I}\\[0.5cm]
 
@@ -58,7 +58,7 @@ Communications between machines face many challenges when the transmitted inform
 
 Relay attacks consist on the mere reception and replay of information. Although at first this might seem harmless, many systems become vulnerable if that relaying of information is not noticed. One scenario that can be used as an example of the threat these attacks represent are access control systems, in which a device is used to prove that a user is within a certain distance from a validator through a challenge-response protocol. On unprotected implementations of these access control systems, an attacker can relay the challenge from the validator to a valid user who is not in range and relay its answer back to the validator, effectively bypassing distance validation. Practical attacks on this kind of systems have been demonstrated on various studies, as in \cite{francillon2011relay, francis2010practical, hancke2005practical, markantonakis2012practical}.
 
-In this paper, we will first discuss the relay attacks used to forge fake location positions, focusing on the countermeasures against them. We will then focus on attacks forging increased distance reports, the feasibility of these attacks and propose solutions to them. In Section 2 we will discuss the available literature on this topic. We will present on Section 3 a more detailed explanation on the research questions this project aims to answer. Following on Section 4 we will explain the methodology used in this study. In Section 5 we will briefly present results and conclusions from our research in the available literature about distance bounding protocols and GPS. Section 6 will discuss the actual results from our research questions, after which we will provide conclusions about the results gathered in Section 7.
+In this paper, we will first discuss the relay attacks used to forge fake location positions, focusing on the countermeasures against them. We will then focus on attacks forging increased distance reports, the feasibility of these attacks and propose solutions to them. In Section 2 we will discuss the available literature on this topic. We will present on Section 3 a more detailed explanation on the research questions this project aims to answer. Following on Section 4 we will explain the methodology used in this study. In Section 5 we will briefly present results and conclusions from our research in the available literature about distance bounding protocols, GPS and radar detection. Section 6 will discuss the actual results from our research questions, after which we will provide conclusions about the results gathered in Section 7.
 
 \section{Related Work}
 
@@ -100,9 +100,9 @@ This project is a theoretical research on a proposed problem. Most of the work w
 
 There will be no practical exploration on the issues, as that kind of study is out of our research scope.
 
-\section{Distance bounding and GPS}
+\section{Distance bounding, GPS and radar detection}
 
-In this section we will discuss both distance bounding protocols and the GPS system. Both of them are extremely relevant topics to our research. First we will explain the current distance bounding protocols, as we will use them as a starting point for our research. Then we will move onto GPS, and explain why systems shouldn't rely completely on it, hence the need to develop more powerful distance bounding protocols for our study cases.
+In this section we will discuss distance bounding protocols, the GPS system and radar detection. All of them are extremely relevant topics to our research. First we will explain the current distance bounding protocols, as we will use them as a starting point for our research. Then we will move onto GPS, and explain why systems shouldn't rely completely on it, hence the need to develop more powerful distance bounding protocols for our study cases. Lastly, we will discuss the possibility of using radar detection to fight the proposed attack.
 
 \subsection{Distance bounding}
 
@@ -127,6 +127,10 @@ In settings without adversaries, GPS positioning cannot be reliably used indoors
 Speaking of scenarios with one or multiple adversaries, even though there are many countermeasures to prevent attacks against GPS positioning \cite{warner2003gps, wen2005countermeasures, jafarnia2012gps}, there do not provide complete security, similar to the Signal Intensity location protocol.
 
 Due these problems, he U.S. government actually recommends to always have backup systems for GPS and suggests to never rely entirely on it\footnote{http://www.gps.gov/support/faq/\#jamming}. Based on these premises we will assume that GPS is not a part of our system, or that we cannot rely on it.
+
+\subsection{Radar detection}
+
+One way to protect against this kind of Man-In-The-Middle attack could be by attempting to physically detect the attacker.
 
 \section{Results}
 

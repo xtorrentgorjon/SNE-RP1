@@ -58,7 +58,7 @@ Communications between machines face many challenges when the transmitted inform
 
 Relay attacks consist on the mere reception and replay of information. Although at first this might seem harmless, many systems become vulnerable if that relaying of information is not noticed. One scenario that can be used as an example of the threat these attacks represent are access control systems, in which a device is used to prove that a user is within a certain distance from a validator through a challenge-response protocol. On unprotected implementations of these access control systems, an attacker can relay the challenge from the validator to a valid user who is not in range and relay its answer back to the validator, effectively bypassing distance validation. Practical attacks on this kind of systems have been demonstrated on various studies, as in \cite{francillon2011relay, francis2010practical, hancke2005practical, markantonakis2012practical}.
 
-In this paper, we will first discuss the relay attacks used to forge fake location positions, focusing on the countermeasures against them. We will then focus on attacks forging increased distance reports, the feasibility of these attacks and propose solutions to them. In Section 2 we will discuss the available literature on this topic. We will present on Section 3 a more detailed explanation on the research questions this project aims to answer. Following on Section 4 we will explain the methodology used in this study. In Section 5 we will briefly present results and conclusions from our research in the available literature about distance bounding protocols and GPS. Sections 6 and 7 will discuss the actual results from our research questions, after which we will provide conclusions about the results gathered in Section 7.
+In this paper, we will first discuss the relay attacks used to forge fake location positions, focusing on the countermeasures against them. We will then focus on attacks forging increased distance reports, the feasibility of these attacks and propose solutions to them. In Section 2 we will discuss the available literature on this topic. We will present on Section 3 a more detailed explanation on the research questions this project aims to answer. Following on Section 4 we will explain the methodology used in this study. In Section 5 we will briefly present results and conclusions from our research in the available literature about distance bounding protocols and GPS. Section 6 will discuss the actual results from our research questions, after which we will provide conclusions about the results gathered in Section 7.
 
 \section{Related Work}
 
@@ -128,14 +128,30 @@ Speaking of scenarios with one or multiple adversaries, even though there are ma
 
 Due these problems, he U.S. government actually recommends to always have backup systems for GPS and suggests to never rely entirely on it\footnote{http://www.gps.gov/support/faq/\#jamming}. Based on these premises we will assume that GPS is not a part of our system, or that we cannot rely on it.
 
-\section{Feasibility of forged increased distance report attacks}
+\section{Results}
 
-Answer the first research question.
+On this section we will present the results of our research, structured in the form of two research questions.
+
+\subsection{Feasibility of forged increased distance report attacks}
+
+The theoretical attack we propose relies on the fact that the discussed protocols regarding distance bounding on the available literature do not prevent relay attacks that report an increased distance between two legitimate parties.
+
+The basics of the attack are easy to understand. Assume two parties are communicating using a transmitter-receiver model, that is, one of them is actively reporting its position to the other. At some point, an attacker seizes a position between them and starts disrupting the communication between them, either by attempting to block the communication or by jamming its frequency range. At the same time, he starts recording the information and resending it to the receiver node, adding a brief delay on it. Figure \ref{fig:attackexample1} provides a graphical description of the problem. The effectiveness of this attack can be increased by having multiple malicious nodes attempting to block the original signal.
+
+\begin{figure}[h!]
+  \centering
+    \includegraphics[width=0.8\textwidth]{images/attack1.png}
+  \caption{Regular communication versus block and relay attack.}
+  \label{fig:attackexample1}
+\end{figure}
+
+Many systems use these distance reporting protocols for their pathing decisions. This kind of attack could cause unexpected behaviour on the systems, effectively altering their original desired outcome. 
+
+Such attacks are difficult to perform in practice, as they require relaying and jamming communications at the same time. Appropriate timing on the relay and some degree of knowledge about the system are also required to successfully perform an attack. However, there is no proving that these attacks cannot be performed with the appropriate technology.
 
 
+-----------
 
-
-Explain the theoretical attack case. Introduce and notice its difficulties as a practical attack. [1-2 paragraphs]
 
 Explain the assumptions made [1 paragraph]
    Feasibility of the jamming and relaying

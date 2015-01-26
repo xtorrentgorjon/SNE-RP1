@@ -232,10 +232,41 @@ Many systems use these distance reporting protocols for their pathing decisions.
 
 Such attacks are difficult to perform in practice, as they require relaying and jamming communications at the same time. Appropriate timing on the relay and some degree of knowledge about the system are also required to successfully perform an attack. However, there is no proving that these attacks cannot be performed with the appropriate technology.
 
-Following next
+Following next, we will discuss some real world applications that may be interesting for this research.
 
 \subsubsection{Autonomous cars}
-Present diverse attack scenarios. [at least 1 paragraph per case]
+
+Autonomous driving is a topic that is receiving a lot of attention by many researchers around the globe in recent years. The variety and quantity of studies on this field, such as \cite{franke1999autonomous,continentalautonomous,levinsontowards,geiger2012we}, prove its relevance as an interesting subject from the point of view of computer vision and location systems.
+
+These autonomous cars use multiple systems to check and validate their position and the layout of the surrounding area. Usually these systems include a subset of GPS location, lasers, radars and computer vision systems \cite{continentalautonomous,levinsontowards}.
+
+Distance bounding protocols seem to not be an active part of these systems, although they could be useful. First of all, the most obvious utility would be to provide an additional security layer to the system, providing additional means to locate other vehicles in normal conditions, or as a backup system in case other devices fail. This feature could be used as well to detect pedestrians in a future if devices such as mobile phones were adapted for this purpose.
+
+Autonomous driven vehicles could also use distance bounding protocols to perform distance verification of specific targets. The distance bounding protocols developed in  \cite{rasmussen2010realization, capkun2006secure} can be used to check the distance with specific targets. This is interesting in this environment as in a high traffic road it is difficult to keep track of other specific vehicles through the use of lidar \footnote{Lidar is a laser-based detecting system: \url{https://lta.cr.usgs.gov/LIDAR}} or computer vision system.
+
+Although the introduction of these distance bounding protocols on autonomous cars could prove to be useful for these purposes, it would also add a vulnerability in the form of the previously mentioned reported distance increase relay attacks.
+
+
+\subsubsection{Drone MANETs}
+
+In the recent years there has been a huge increase on the interest towards drones\footnote{\url{http://www.google.com/trends/explore#q=drone}}, due the emergence of topics such as Amazon Prime delivery drones or the usage of unmanned aircraft by the US military.
+
+
+\begin{figure}[h!]
+  \centering
+    \includegraphics[width=0.6\textwidth]{images/amazonprimedrone.png}
+  \caption{Amazon Prime delivery drone carrying a package. Because of legal constraints this delivery system is not being used yet, although it may be available sometime in 2015.\protect\footnotemark[5]}
+  \label{fig:attackexample1}
+\end{figure}
+
+\addtocounter{footnote}{1}\footnotetext{\url{http://abcnews.go.com/Technology/amazon-prime-air-delivery-drones-arrive-early-2015/story?id=21064960}}
+
+\index{\footnote[6]}
+
+
+
+
+Present diverse attack scenarios.\footnote{omg yolo} [at least 1 paragraph per case]
    Drones (multiple cases)
      Cooperative working
      Area surveillance

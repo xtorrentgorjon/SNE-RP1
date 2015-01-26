@@ -242,7 +242,7 @@ These autonomous cars use multiple systems to check and validate their position 
 
 Distance bounding protocols seem to not be an active part of these systems, although they could be useful. First of all, the most obvious utility would be to provide an additional security layer to the system, providing additional means to locate other vehicles in normal conditions, or as a backup system in case other devices fail. This feature could be used as well to detect pedestrians in a future if devices such as mobile phones were adapted for this purpose.
 
-Autonomous driven vehicles could also use distance bounding protocols to perform distance verification of specific targets. The distance bounding protocols developed in  \cite{rasmussen2010realization, capkun2006secure} can be used to check the distance with specific targets. This is interesting in this environment as in a high traffic road it is difficult to keep track of other specific vehicles through the use of lidar \footnote{Lidar is a laser-based detecting system: \url{https://lta.cr.usgs.gov/LIDAR}} or computer vision system.
+Autonomous driven vehicles could also use distance bounding protocols to perform distance verification of specific targets. The distance bounding protocols developed in  \cite{rasmussen2010realization, capkun2006secure} can be used to check the distance with specific targets. This is interesting in this environment as in a high traffic road it is difficult to keep track of other specific vehicles through the use of lidar\footnote{Lidar is a laser-based detecting system: \url{https://lta.cr.usgs.gov/LIDAR}} or computer vision system.
 
 Although the introduction of these distance bounding protocols on autonomous cars could prove to be useful for these purposes, it would also add a vulnerability in the form of the previously mentioned reported distance increase relay attacks.
 
@@ -261,9 +261,14 @@ In the recent years there has been a huge increase on the interest towards drone
 
 \addtocounter{footnote}{1}\footnotetext{\url{http://abcnews.go.com/Technology/amazon-prime-air-delivery-drones-arrive-early-2015/story?id=21064960}}
 
-\index{\footnote[6]}
+It is safe to foresee that that the usage of drones will only grow on the upcoming years due their ability to decrease costs and improve the performance of systems currently manned by humans. We present two scenarios on which the use of drones can be interesting and how can they be affected by the discussed relay attacks.
 
-
+\begin{description}
+  \item[Cooperative working drones] Taking as an example the Amazon Prime delivery drones, we can discuss the possibility of having multiple drones working in groups. One interesting scenario is the case of multiple drones carrying a huge package. For a company trying to keep expenses low, it would make sense to use multiple drones that can work cooperatively in different situations rather than having drones of various sizes for each type of package. In this situation, an attacker could try to attack that system by faking some drone's distance reports to the others, which may force the drones to change positions and loose equilibrium, eventually crashing.
+ 
+  A relay attack on this platform could make more sense than just attempting to shut down the drones to achieve the same goal, as it would be extremely difficult to prove that a relay attack took place by checking the logs of the crashed drones. This could lead to a reputation loss for the delivery company, as their system would be seen as unreliable by the customers.
+  \item[Area surveillance drones] ipsum
+\end{description}
 
 
 Present diverse attack scenarios.\footnote{omg yolo} [at least 1 paragraph per case]

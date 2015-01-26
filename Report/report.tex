@@ -255,7 +255,7 @@ In the recent years there has been a huge increase on the interest towards drone
 \begin{figure}[h!]
   \centering
     \includegraphics[width=0.6\textwidth]{images/amazonprimedrone.png}
-  \caption{Amazon Prime delivery drone carrying a package. Because of legal constraints this delivery system is not being used yet, although it may be available sometime in 2015.\protect\footnotemark[5]}
+  \caption{Amazon Prime delivery drone carrying a package. Because of legal constraints this delivery system is not being used yet, although it may be available at some point in 2015.\protect\footnotemark[5]}
   \label{fig:attackexample1}
 \end{figure}
 
@@ -267,18 +267,20 @@ It is safe to foresee that that the usage of drones will only grow on the upcomi
   \item[Cooperative working drones] Taking as an example the Amazon Prime delivery drones, we can discuss the possibility of having multiple drones working in groups. One interesting scenario is the case of multiple drones carrying a huge package. For a company trying to keep expenses low, it would make sense to use multiple drones that can work cooperatively in different situations rather than having drones of various sizes for each type of package. In this situation, an attacker could try to attack that system by faking some drone's distance reports to the others, which may force the drones to change positions and loose equilibrium, eventually crashing.
  
   A relay attack on this platform could make more sense than just attempting to shut down the drones to achieve the same goal, as it would be extremely difficult to prove that a relay attack took place by checking the logs of the crashed drones. This could lead to a reputation loss for the delivery company, as their system would be seen as unreliable by the customers.
-  \item[Area surveillance drones] ipsum
+  
+  
+  \item[Area surveillance drones] Another common usage of drone MANETs is to perform area surveillance. This case has both civilian and military applications. Civilian uses range from searching missing people to area mapping, while military uses usually imply area reconnaissance searching for possible threats or targets. Figure \ref{fig:attackexample2} represents an example of this attack.
+  
+  \begin{figure}[h!]
+  \centering
+    \includegraphics[width=0.8\textwidth]{images/attack2.png}
+  \caption{On the first case, the four drones manage to explore all the expected area (marked with trailing dots). On the second, the first and fourth drones are under a relay attack that makes them believe they're leaving area unexplored between them and the neighbour drones, which makes them decide to get closer to the other drones. The orange zone represents the resulting unchecked area as a consequence of this attack.}
+  \label{fig:attackexample2}
+\end{figure}
+
+This attack might prove considerably difficult to perform, but can have catastrophic consequences if successful. Unlike the attack on cooperative drones, distance is less of a restriction here, but in this case the attack requires a much deeper knowledge of the attacked system.
+
 \end{description}
-
-
-Present diverse attack scenarios.\footnote{omg yolo} [at least 1 paragraph per case]
-   Drones (multiple cases)
-     Cooperative working
-     Area surveillance
-   Automatically driven cars
-   Boats and harbours
-  ...?
-For each case, state clearly the assumptions made and its limitations
 
 
 \subsection{Fighting forged increased distance reports}

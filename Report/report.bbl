@@ -535,79 +535,6 @@
   \field{year}{2010}
 \endentry
 
-\entry{seshadri2005bayesian}{inproceedings}{}
-  \name{author}{3}{}{%
-    {{}%
-     {Seshadri}{S.}%
-     {Vinay}{V.}%
-     {}{}%
-     {}{}}%
-    {{}%
-     {Zaruba}{Z.}%
-     {Gergely~V}{G.~V.}%
-     {}{}%
-     {}{}}%
-    {{}%
-     {Huber}{H.}%
-     {Manfred}{M.}%
-     {}{}%
-     {}{}}%
-  }
-  \list{organization}{1}{%
-    {IEEE}%
-  }
-  \strng{namehash}{SVZGVHM1}
-  \strng{fullhash}{SVZGVHM1}
-  \field{sortinit}{S}
-  \field{booktitle}{Pervasive Computing and Communications, 2005. PerCom 2005.
-  Third IEEE International Conference on}
-  \field{pages}{75\bibrangedash 84}
-  \field{title}{A bayesian sampling approach to in-door localization of
-  wireless devices using received signal strength indication}
-  \field{year}{2005}
-\endentry
-
-\entry{sheng2008detecting}{inproceedings}{}
-  \name{author}{5}{}{%
-    {{}%
-     {Sheng}{S.}%
-     {Yong}{Y.}%
-     {}{}%
-     {}{}}%
-    {{}%
-     {Tan}{T.}%
-     {Keren}{K.}%
-     {}{}%
-     {}{}}%
-    {{}%
-     {Chen}{C.}%
-     {Guanling}{G.}%
-     {}{}%
-     {}{}}%
-    {{}%
-     {Kotz}{K.}%
-     {David}{D.}%
-     {}{}%
-     {}{}}%
-    {{}%
-     {Campbell}{C.}%
-     {Andrew}{A.}%
-     {}{}%
-     {}{}}%
-  }
-  \list{organization}{1}{%
-    {IEEE}%
-  }
-  \strng{namehash}{SY+1}
-  \strng{fullhash}{SYTKCGKDCA1}
-  \field{sortinit}{S}
-  \field{booktitle}{INFOCOM 2008. The 27th Conference on Computer
-  Communications. IEEE}
-  \field{title}{Detecting 802.11 MAC layer spoofing using received signal
-  strength}
-  \field{year}{2008}
-\endentry
-
 \entry{tu2007rfid}{inproceedings}{}
   \name{author}{2}{}{%
     {{}%
@@ -686,25 +613,6 @@
   \field{pages}{13\bibrangedash 16}
   \field{title}{Countermeasures for GPS signal spoofing}
   \field{year}{2005}
-\endentry
-
-\entry{woodman2007introduction}{article}{}
-  \name{author}{1}{}{%
-    {{}%
-     {Woodman}{W.}%
-     {Oliver~J}{O.~J.}%
-     {}{}%
-     {}{}}%
-  }
-  \strng{namehash}{WOJ1}
-  \strng{fullhash}{WOJ1}
-  \field{sortinit}{W}
-  \field{pages}{15}
-  \field{title}{An introduction to inertial navigation}
-  \field{volume}{14}
-  \field{journaltitle}{University of Cambridge, Computer Laboratory, Tech. Rep.
-  UCAMCL-TR-696}
-  \field{year}{2007}
 \endentry
 
 \lossort

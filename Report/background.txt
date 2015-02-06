@@ -1,0 +1,52 @@
+\section{Background}
+\label{sec:background}
+
+In this section we will discuss distance bounding protocols, the GPS system and radar detection. All of them are relevant topics to our research. First we will explain the current distance bounding protocols, as we will use them as a starting point for our research. Then we will move on to GPS, and explain why systems shouldn't rely completely on it, hence the need to develop more powerful distance bounding protocols for our study cases. Lastly, we will discuss the possibility of using radar detection and Inertial Navigation System to fight the proposed attack.
+
+\subsection{Distance bounding}
+
+Distance bounding protocols were developed as a response to relay attacks that attempt to fool systems that validate a users proximity to a validation point. Common scenarios of these applications are found in access control systems, such as smartcards to access buildings or cars using remote passive keys.
+
+These attacks try to use properties of the systems used in the communications (such as signal intensity or message time of flight (ToF)) to validate the proximity of users. Based on the previous studies available\cite{capkun2006secure}, we will proceed to briefly discuss these methods:
+
+\begin{description}
+  \item[Signal Intensity] Signal intensity protocols try to achieve proper location of other nodes by measuring the received signal strength. Previous work available in the public literature\cite{seshadri2005bayesian} proves the usefulness of this location system. Even though attacks on this systems are hard to perform \cite{sheng2008detecting}, the defences against them rely mostly on anomaly detection. The reliability of these systems can be decreased in heavily adverse situations, and the ToF methods discussed next provide a higher degree of security.
+  \item[Ultrasound ToF] Ultrasound ToF measures the round-trip time of messages sent and received from the parties measuring the distance between them. This does not depend on the signal strength for the measurement, although ultrasound-based ToF has the latent vulnerability that other methods such as radio frequency or optical wires attackers can surpass the speed of the ultrasound communication, effectively being able to relay information faster than the legitimate infrastructure\cite{capkun2006secure}.
+  \item[Radio ToF] Radio-based ToF uses the same method as ultrasound ToF to perform the distance check. The key of the success of this method is that the information transmitted travels at speeds near the speed of light, meaning there is no physical way to fake one node is closer than it really is. Practical studies on this method \cite{rasmussen2010realization} developed hardware that can perform the operations required under 1ns, meaning that the maximum theoretical distance an attacker can shorten its reported distance is under 15cm.
+\end{description}
+
+In this project we will be using Radio ToF as a basis for our work, as it is proven to be the most secure and reliable method. However, this method alone is not enough to fight reports that forge an increase on the real distance between parties, and this will be the main focus of our research.
+
+\subsection{GPS location}
+
+It could be argued that GPS location can be used to prevent the attacks that we will discuss on the next Section. However, GPS signals have their own weaknesses both with and without presence of adversaries.
+
+In settings without adversaries, GPS positioning cannot be reliably used indoors or underground, and sometimes the presence of tall buildings or structures nearby is enough to disrupt its data.
+
+Speaking of scenarios with one or multiple adversaries, even though there are many countermeasures to prevent attacks against GPS positioning \cite{warner2003gps, wen2005countermeasures, jafarnia2012gps}, there do not provide complete security, similar to the Signal Intensity location protocol.
+
+Due these problems, he U.S. government actually recommends to always have backup systems for GPS and suggests to never rely entirely on it\footnote{\url{http://www.gps.gov/support/faq/#jamming}}. Based on these premises we will assume that GPS is not a part of our system, or that we cannot rely on it.
+
+\subsection{Radar detection}
+
+One way to protect against this kind of Man-In-The-Middle attack could be by attempting to physically detect the attacker. If an unidentified object is detected between the parties and it is confirmed that it does not belong to the system, security measures could be taken to prevent such relay attacks.
+
+However, recent studies as the one by \citeauthor{cadirci2009rf} in \cite{cadirci2009rf}, state that Radar Cross Section\footnote{\url{http://www.microwaves101.com/encyclopedia/Navy handbook/4.11 Radar Cross-Section (RCS).pdf}}, a measurement used to rate the ability to reflect radar waves by an object, can be heavily decreased by employing proper techniques such as the usage of special materials, radiowave-absorbing paint and specific shapes that minimize and disperse radio reflection.
+
+As a real world example, the first operational aircraft designed to employ advanced stealth technology, the Lockheed F-117 Nighthawk from the United States Air Force, with a wingspan and a length of $13.20m$ and $20m$ respectively\footnote{\url{http://www.fighter-planes.com/info/f117_nighthawk.htm}}, has a RCS signature of $0.025m^2$, which is similar to that of a bird\cite{cadirci2009rf}.
+
+In the attack scenarios proposed in Section \ref{sec:results}, flying drones would be the most versatile device to perform the attacks. Considering these drones can be considerably smaller than these aircraft (depending on the situation, the used drone could be shorter than $1m$ in length, height and width), it is easy to foresee that they would be almost invisible to radar systems. If the attack scenario does not require the attacker to fly at relative high speeds, its RCS signature could be further decreased by designing an attack drone with a shape specifically made to absorb radar waves. 
+
+We therefore conclude that, in the current state of stealth and anti-stealth technologies, radar detection would not be a strong countermeasure to prevent against that kind of attacks.
+
+
+
+\subsection{Inertial Navigation System}
+
+Inertial Navigation Systems are devices used to provide machines a sense of self-awareness of their current position, based on their initial position and the chosen routes, by using accelerometers and gyroscopes. These systems could be relevant for this research, as they share the same \emph{relative positioning} focus, staying independent from third party sensors.
+
+The work done by \citeauthor{woodman2007introduction} in \cite{woodman2007introduction} evaluates the cost and performance of the INS. The conclusion from that work is that available INS hardware cannot realistically provide an accuracy below $5m$ of error after $60$ seconds of operation. In an environment with multiple nodes using this system, this means that after $60$ seconds, the location detection between two nodes could be as biased as $10m$. This also limits is usability as a stand-alone positioning system, as the error will only grow larger as time goes on.
+
+Although INS accuracy is rapidly improving over the years, right now is not a viable solution or countermeasure to our problem.
+
+

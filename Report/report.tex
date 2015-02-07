@@ -45,7 +45,7 @@ Xavier Torrent Gorj\'{o}n\\
 
 \renewcommand{\abstractname}{\Large Abstract}
 \begin{abstract}
-For a long time, distance-bounding protocols have been an extensive research topic due their usefulness as a security feature for systems that assume a specific proximity between parties, such as Passive Keyless Entry Systems (PKES) for cars. However, we did not find information on the current literature any attempts to use these protocols to prevent relay attacks forging increased distance reports.
+For a long time, distance-bounding protocols have been an extensive research topic due their usefulness as a security feature for systems that assume a specific proximity between parties, such as Passive Keyless Entry Systems (PKES) for cars. However, we did not find on the current literature any attempts to use these protocols to prevent relay attacks forging increased distance reports.
 
 This project first proposes some scenarios, in which the involved devices use distance-bounding protocols to perform distance checks between themselves. Relay attacks that attempt to fake increased distance reports between these devices will be studied, and a discussion of the motivation these attacks might have, as well as their consequences, will be provided.
 
@@ -209,9 +209,11 @@ In this project we use Radio ToF distance-bounding as a basis for our work, as i
 
 
 \begin{enumerate}
-  \item First, both validator $V$ and prover $P$ exchange a nonce $N$. This can be done on-the-fly or before the system starts. The only requirement is that the nonce should be large.
+  \item First, both validator $V$ and prover $P$ exchange a nonce $N$. This can be done on-the-fly or before the system starts.
   \item When it is necessary to verify the current distance of the two parties, $V$ starts sending challenging bits $C_{n}$ to $P$.
-  \item For every bit $C_{i}$ received, $P$ sends back a response in the form of $C_{i}+N_{i}$
+  \item For every bit $C_{i}$ received, $P$ sends back a response in the form of $C_{i}+N_{i}$. The answer is done by sending the bit $C_{i}$ through one of the two communication channels for the challenge answers, while the bit $N_{i}$ is encoded implicitly in the form of which answer channel was selected. For example, if the current nonce bit $N_{i}$ is $0$, the $C_{i}$ answer would be sent using the first channel, whereas if its value of $N_{i}$ was $1$, the second channel would be used.
+  \item Step 3 is repeated $n$ times. The chances of an attacker faking one of the response transmissions is $\frac{1}{2}$, but after $n$ times of repeating this operation, the possibility of an attacker faking the whole procedure goes down to $\frac{1}{2\textsuperscript{n}}$. 
+  \item Finally, $V$ can calculate the mean value of all the challenge-response ToF, effectively obtaining the distance between him and $P$.
 \end{enumerate}
 
 
@@ -220,15 +222,15 @@ In this project we use Radio ToF distance-bounding as a basis for our work, as i
 \begin{figure}[h!]
   \centering
     \includegraphics[width=1\textwidth]{images/dbounding.png}
-  \caption{Distance-bounding Protocol proposed by \citeauthor{rasmussen2010realization}}
+  \caption{Channels in the distance-bounding Protocol proposed by \citeauthor{rasmussen2010realization}}
   \label{fig:dbounding1}
 \end{figure}
 
 
 
+However, although this protocol alone can prevent relay attacks attempting to forge decreased distances between the legitimate parties, it is not enough to fight attacks that forge an increase on the real distance, and this will be the main focus of our research.
 
 
-However, this method alone is not enough to fight reports that forge an increase on the real distance between parties, and this will be the main focus of our research.
 
 \subsubsection{GPS location}
 
@@ -298,7 +300,7 @@ We therefore conclude that, in the current state of stealth and anti-stealth tec
 
 
 
-\subsection{How feasible are forged increased distance report relay attacks?}
+\subsection{Feasibility of forged increased distance report relay attacks}
 
 The theoretical attack we propose relies on the fact that the discussed protocols regarding distance bounding on the available literature do not prevent relay attacks that report an increased distance between two legitimate parties.
 
@@ -385,7 +387,7 @@ This attack might prove considerably difficult to perform, but can have catastro
 
 
 
-\subsection{How can forged increased distance report relay attacks be prevented?}
+\subsection{Preventing forged increased distance report relay attacks}
 
 In this section some countermeasures to the studied relay attacks are proposed. These solutions can stack with one another and, in fact, it is recommended to do so, as each one of them provides an additional layer of security.
 
@@ -393,17 +395,17 @@ These solutions do not need new protocols or hardware, and instead rely on the r
 
 \subsubsection{Introducing behaviour verification}
 
-Nowadays storage is hardly a limitation for systems, as the price, size and weight of these components has decreased to the point where multiple gigabytes of information can be stored in inexpensive memories that have the size of a screw.
+Nowadays storage is hardly a limitation for systems, as the price, size and weight of these components have decreased to the point where multiple gigabytes of information can be stored in inexpensive memories that have the size of a screw.
 
-Therefore, storing information on the recent location history of one or multiple parties is feasible. Uncoordinated attacks would be prevented with this feature, although it does little to protect against carefully planned ones. All location systems must allow some degree of variation on the measurements, as there may be many reasons for a slight delay in a communication. By successfully using that error margin, an attacker could still attempt to fake distance reports increasingly over a period of time.
+Therefore, storing information on the device about the recent location of one or multiple parties is feasible. Uncoordinated attacks would be prevented with this feature, although it does little to protect against carefully planned ones. All location systems must allow some degree of variation on the measurements, as there may be many reasons for a slight delay in a communication. By successfully using that error margin, an attacker could still attempt to fake distance reports increasingly over a period of time.
 
 
 
 \subsubsection{Utilize multiple distance-bounding signals}
 
-Historically, distance-bounding protocols are used to validate an upper-bound distance between a prover and a validating station. As such, the exact location of a prover is not required, only its distance to the validating station matters (that is, check if the prover is within a certain circle of the prover in a 2D scenario, or a sphere in a 3D scenario).
+Historically, distance-bounding protocols are used to validate an upper-bound distance between a prover and a validating station. As such, the exact location of a prover is not required, only its distance to the validating station matters (that is, check if the prover is within a certain radius of the prover in a 2D scenario, or a sphere in a 3D scenario).
 
-If the nodes using distance-bounding protocols are large enough, multiple distance-bounding antennas can be used so that no only the distance from another node is known, but also its approximate location on the 3D space.
+If the nodes using distance-bounding protocols are large enough, multiple distance-bounding antennas can be used so that not only the distance from another node is known, but also its approximate location on the 3D space.
 
 By using this triangulation system, attackers need to temper the communication between several antennas at the same time. Coupled with the behaviour verification solution, it becomes easier to detect relay attacks. For an attacker it is still easy to produce fake distance reporting positions on the same vector of the legitimate prover, but it becomes increasingly difficult to fake positions that diverge from that line. 
 
@@ -422,7 +424,14 @@ This protection method has two major downsides. The first is that devices should
 
 When the first attack definition was proposed on Figure \ref{fig:attackexample1}, only one of the nodes was reporting its location to the other. Although this setup may simplify the operation and decision-making of these nodes (by having only one node in the system taking decisions for the others), it also makes the system more vulnerable to relay attacks.
 
-If all nodes on the system can share information of the position of neighbour nodes between themselves, an attack on the system becomes considerably more difficult to perform. In essence, this solution is similar to the previous one, but on a larger scope. It is not required that one node checks the distance between him and another one with all the other nodes on the system, although every additional node verifying the information makes it harder to perform an attack on the system.
+If all nodes on the system can share information of the position of neighbour nodes between themselves, an attack on the system becomes considerably more difficult to perform. It is not required that one node checks the distance between him and another one with all the other nodes on the system, although every additional node verifying the information makes it harder to perform an attack on the system. Figure \ref{fig:attackexample4} has a graphic description of what this triangulation achieves.
+
+  \begin{figure}[h!]
+  \centering
+    \includegraphics[width=0.8\textwidth]{images/attack4.png}
+  \caption{Using the information of multiple drones to check distances hinders the task of a possible attacker, as multiple signals have to be relayed properly.}
+  \label{fig:attackexample4}
+\end{figure}
 
 This trade-off between communication load and security is the only restriction on this solution. Different applications will have different needs, and the delay between messages has to be considered as well (a node A can report to B the position of a third node C on a given time, but B must consider the delay of the transmission with A when checking the received data).
 
@@ -438,7 +447,7 @@ This trade-off between communication load and security is the only restriction o
 \section{Conclusions}
 \label{sec:conclusions}
 
-From the results on the first research question we can conclude that, even though the explored scenarios are only a subject of investigation right now and have no commercial use at the moment of writing this document, they will surely be amongst the most important developments in the upcoming years. This makes the vulnerabilities on distance-bounding protocols a latent problem.
+From the results on the first research question we can conclude that, even though the explored scenarios are only a subject of investigation right now, and have no commercial use at the moment of writing this document, both autonomous cars and drones will surely be amongst the most important developments in the upcoming years. This makes the vulnerabilities on distance-bounding protocols a latent problem.
 
 As systems like the drone delivery and automated cars are not yet available to the open public, is it difficult to foresee what systems and protocols these platforms will use. However, in this document the usefulness of including distance-bounding protocols on them has been explained, focusing on the consequences distance-amplification attacks might have on them.
 

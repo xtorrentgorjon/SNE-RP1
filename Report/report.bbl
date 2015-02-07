@@ -41,7 +41,7 @@
   \field{year}{1994}
 \endentry
 
-\entry{vandenbreekel2014relay}{article}{}
+\entry{vandenbreekel2014relay}{misc}{}
   \name{author}{1}{}{%
     {{}%
      {Breekel}{B.}%
@@ -102,7 +102,7 @@
   \field{year}{2006}
 \endentry
 
-\entry{continentalautonomous}{article}{}
+\entry{continentalautonomous}{misc}{}
   \name{author}{1}{}{%
     {{}%
      {Continental}{C.}%
@@ -266,7 +266,7 @@
   \field{year}{2012}
 \endentry
 
-\entry{goyal2010literature}{article}{}
+\entry{goyal2010literature}{misc}{}
   \name{author}{3}{}{%
     {{}%
      {Goyal}{G.}%
@@ -401,7 +401,7 @@
   \field{year}{2012}
 \endentry
 
-\entry{levinsontowards}{article}{}
+\entry{levinsontowards}{misc}{}
   \true{moreauthor}
   \name{author}{10}{}{%
     {{}%

@@ -12,9 +12,11 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {subsection}{\numberline {5.1}How feasible are forged increased distance report relay attacks?}{7}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{\numberline {5.1.1}First example of real world attack: Autonomous cars}{8}
+\contentsline {subsubsection}{\numberline {5.1.1}Study cases}{8}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{\numberline {5.1.2}Second example of real world attack: Drone MANETs}{8}
+\contentsline {paragraph}{\numberline {5.1.1.1}First example of real world attack: Autonomous cars}{8}
+\defcounter {refsection}{0}\relax 
+\contentsline {paragraph}{\numberline {5.1.1.2}Second example of real world attack: Drone MANETs}{8}
 \defcounter {refsection}{0}\relax 
 \contentsline {subsection}{\numberline {5.2}How can forged increased distance report relay attacks be prevented?}{10}
 \defcounter {refsection}{0}\relax 

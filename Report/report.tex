@@ -118,7 +118,7 @@ There are also many practical studies in the field of distance bounding, which a
 
 This project will assume certain conditions for the studied attacks. Some assumptions and justifications will be required on the investigation, based on the characteristics of GPS signals. Many studies focus on the feasibility of intentional attacks against GPS systems \cite{warner2003gps, wen2005countermeasures, jafarnia2012gps}. These studies conclude that, even though spoofing is hard with the solutions they propose, it is not impossible. With this premise, the goal will be to develop countermeasures against relay attacks without relying on GPS signals.
 
-In a similar way to GPS signals, other systems such as radar detection \cite{cadirci2009rf} and Inertial Navigation Systems (INR) \cite{patent:4085440} could arguably be used to prevent relay attacks. Using these information sources \cite{cadirci2009rf, patent:4085440}, we explain why neither of these systems are reliable, reaffirming the need of a modified distance bounding protocol that is not vulnerable to relay attacks.
+In a similar way to GPS signals, other systems such as radar detection \cite{cadirci2009rf} and Inertial Navigation Systems (INS) \cite{patent:4085440} could arguably be used to prevent relay attacks. Using these information sources \cite{cadirci2009rf, patent:4085440}, we explain why neither of these systems are reliable, reaffirming the need of a modified distance bounding protocol that is not vulnerable to relay attacks.
 
 Finally, this study is closely related to the field of MANETs (Mobile Ad-hoc NETworks), and as such, literature available on this topic is of our interest. In particular, wormhole attacks \cite{hu2006wormhole, maheshwari2007detecting, goyal2010literature} are a specific type of relay attack that, while being different than the ones we will study in this document, provide valuable insight to our investigation.
 
@@ -164,11 +164,11 @@ This second research question will focus on providing solutions to the issues st
 \section{Methodology}
 \label{sec:methodology}
 
-This project will be a theoretical research on the current distance-bounding protocols, and their inability to detect increased distance reports. We intend to expose the limitations of these protocols on some real world scenarios, and ultimately offer solutions to them.
+This project will be a theoretical research on the current distance-bounding protocols, and their inability to detect increased distance reports. We intend to expose the limitations of these protocols on specific real world scenarios, and ultimately offer solutions to them.
 
 First, we provide a review of the available literature about distance-bounding protocols, in order to determine which of them is best suited for our research. A discussion of alternative systems that could be used to prevent these attacks will be provided as well.
 
-Following the distance-bounding protocols description, this document will propose some systems that could be vulnerable to these attacks, reviewing the difficulty of these attacks and the consequences these attacks might have. In particular, the focus will be on autonomous cars and drones. These scenarios will be the basis for our research.
+Following the distance-bounding protocols description, this document will propose systems that could be vulnerable to these attacks, reviewing the difficulty of these attacks and the consequences these attacks might have. In particular, the focus will be on autonomous cars and drones. These scenarios will be the basis for our research.
 
 At the last part of the paper, variation proposals of the distance-bounding protocols will be provided, in order to effectively reduce the threat these attacks pose. We discuss the increase in security these solutions achieve, as well as evaluating the feasibility of implementing them on our study cases.
 

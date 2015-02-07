@@ -204,7 +204,31 @@ These attacks try to use properties of the systems used in the communications (s
   \item[Radio ToF] Radio-based ToF uses the same method as ultrasound ToF to perform the distance check. The key of the success of this method is that the information transmitted travels at speeds near the speed of light, meaning there is no physical way to fake one node is closer than it really is. Practical studies on this method \cite{rasmussen2010realization} developed hardware that can perform the operations required under 1ns, meaning that the maximum theoretical distance an attacker can shorten its reported distance is under 15cm.
 \end{description}
 
-In this project we will be using Radio ToF as a basis for our work, as it is proven to be the most secure and reliable method. However, this method alone is not enough to fight reports that forge an increase on the real distance between parties, and this will be the main focus of our research.
+In this project we use Radio ToF distance-bounding as a basis for our work, as it is proven to be the most secure and reliable method. In particular, the implementation that will be assumed to be used, will be the one described in \cite{rasmussen2010realization}, as it is the most recent and secure developed protocol. This distance-bounding protocol is based purely on analog signals, avoiding the time required to convert analog signals into digital signals. A graphical diagram of the communication channels can be found in Figure \ref{fig:dbounding1}, and following next there is a description of the inner workings of the system:
+
+
+
+\begin{enumerate}
+  \item First, both validator $V$ and prover $P$ exchange a nonce $N$. This can be done on-the-fly or before the system starts. The only requirement is that the nonce should be large.
+  \item When it is necessary to verify the current distance of the two parties, $V$ starts sending challenging bits $C_{n}$ to $P$.
+  \item For every bit $C_{i}$ received, $P$ sends back a response in the form of $C_{i}+N_{i}$
+\end{enumerate}
+
+
+
+
+\begin{figure}[h!]
+  \centering
+    \includegraphics[width=1\textwidth]{images/dbounding.png}
+  \caption{Distance-bounding Protocol proposed by \citeauthor{rasmussen2010realization}}
+  \label{fig:dbounding1}
+\end{figure}
+
+
+
+
+
+However, this method alone is not enough to fight reports that forge an increase on the real distance between parties, and this will be the main focus of our research.
 
 \subsubsection{GPS location}
 

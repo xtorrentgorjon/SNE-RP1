@@ -45,7 +45,7 @@ Xavier Torrent Gorj\'{o}n\\
 
 \renewcommand{\abstractname}{\Large Abstract}
 \begin{abstract}
-For a long time, distance-bounding protocols have been an extensive research topic due their usefulness as a security feature for systems that assume a specific proximity between parties, such as Passive Keyless Entry Systems (PKES) for cars. However, we did not find on the current literature any attempts to use these protocols to prevent relay attacks forging increased distance reports.
+For a long time, distance-bounding protocols have been an extensive research topic due to their usefulness as a security feature for systems that assume a specific proximity between parties, such as Passive Keyless Entry Systems (PKES) for cars. However, we did not find on the current literature any attempts to use these protocols to prevent relay attacks forging increased distance reports.
 
 This project first proposes some scenarios, in which the involved devices use distance-bounding protocols to perform distance checks between themselves. Relay attacks that attempt to fake increased distance reports between these devices will be studied, and a discussion of the motivation these attacks might have, as well as their consequences, will be provided.
 
@@ -99,9 +99,9 @@ Communications between machines face many challenges when the transmitted inform
 
 Relay attacks consist of the mere reception and replay of information. Although at first this might seem harmless, many systems become vulnerable if that relaying of information is not noticed. One scenario that can be used as an example of the threat these attacks represent are Access Control Systems (ACS), in which a device is used to prove that a user is within a certain distance from a validator through a challenge-response protocol. On unprotected implementations of these access control systems, an attacker can relay the challenge from the validator to a valid user who is not in range and relay its answer back to the validator, effectively bypassing distance validation. Practical attacks on this kind of systems have been demonstrated in various studies \cite{francillon2011relay, francis2010practical, hancke2005practical, markantonakis2012practical}.
 
-This paper, however, will study attacks that are not related to proximity checking systems. Distance-bounding protocols are already an effective solution for ACS and other systems that validate the proximity of an user before performing operations, and are only limited by the specifications of the systems that need to implement such protocols. Nonetheless, we did not find in the current literature attempts to use distance-bounding protocols to prevent forged increased distance reports, although this was an acknowledged issue on the distance-bounding studies. We intend to show that these attacks can be a menace, and propose solutions to prevent them.
+This paper, however, will study attacks that are not related to proximity checking systems. Distance-bounding protocols are already an effective solution for ACS and other systems that validate the proximity of a user before performing operations, and are only limited by the specifications of the systems that need to implement such protocols. Nonetheless, we did not find, in the current literature, attempts to use distance-bounding protocols to prevent forged increased distance reports, although this was an acknowledged issue on the distance-bounding studies. We intend to show that these attacks can be a menace, and propose solutions to prevent them.
 
-This document is structured as follows: in Section \ref{sec:relatedwork} we review the literature used in this project. Section \ref{sec:researchquestions} presents a detailed explanation on the research questions this project aims to answer. Following in Section \ref{sec:methodology}, an explanation of the methodology used in this study is provided. Section \ref{sec:rq1} discusses the actual results from our initial investigation, which includes a proposal of various scenarios in which relay attacks forging increased distance reports could be used and an evaluation on alternative systems that could be used to prevent these attacks. Some solutions based on the current distance-bounding protocols will be proposed on Section \ref{sec:rq2}, analysing the level of protection they provide, as well as the feasibility and cost of using them. Conclusions are gathered in Section \ref{sec:conclusions}, which includes a review and a discussion of the obtained results.
+This document is structured as follows: in Section \ref{sec:relatedwork} we review the literature used in this project. Section \ref{sec:researchquestions} presents a detailed explanation on the research questions this project aims to answer. Following in Section \ref{sec:methodology}, an explanation of the methodology used in this study is provided. Section \ref{sec:dbandalternative} discusses the actual results from our initial investigation, including an explanation on how distance-bounding protocols work and a study of alternative systems that could be used as countermeasures to the discussed relay attack. Proposal of various scenarios in which relay attacks forging increased distance reports could be used are presented in Section \ref{sec:attackfeasibility}. Some solutions based on the current distance-bounding protocols will be proposed on Section \ref{sec:prevention}, analysing the level of protection they provide, as well as the feasibility and cost of using them. Conclusions are gathered in Section \ref{sec:conclusions}, which includes a review and a discussion of the obtained results.
 
 
 
@@ -118,7 +118,7 @@ There are also many practical studies in the field of distance bounding, which a
 
 This project will assume certain conditions for the studied attacks. Some assumptions and justifications will be required on the investigation, based on the characteristics of GPS signals. Many studies focus on the feasibility of intentional attacks against GPS systems \cite{warner2003gps, wen2005countermeasures, jafarnia2012gps}. These studies conclude that, even though spoofing is hard with the solutions they propose, it is not impossible. With this premise, the goal will be to develop countermeasures against relay attacks without relying on GPS signals.
 
-In a similar way to GPS signals, other systems such as radar detection \cite{cadirci2009rf} and Inertial Navigation Systems (INR) \cite{patent:4085440} could arguably be used to prevent relay attacks. Using these information sources \cite{cadirci2009rf, patent:4085440}, we explain why these systems are not reliable either, reaffirming the need of a modified distance bounding protocol that is not vulnerable to relay attacks.
+In a similar way to GPS signals, other systems such as radar detection \cite{cadirci2009rf} and Inertial Navigation Systems (INS) \cite{patent:4085440} could arguably be used to prevent relay attacks. Using these information sources \cite{cadirci2009rf, patent:4085440}, we explain why neither of these systems are reliable, reaffirming the need of a modified distance bounding protocol that is not vulnerable to relay attacks.
 
 Finally, this study is closely related to the field of MANETs (Mobile Ad-hoc NETworks), and as such, literature available on this topic is of our interest. In particular, wormhole attacks \cite{hu2006wormhole, maheshwari2007detecting, goyal2010literature} are a specific type of relay attack that, while being different than the ones we will study in this document, provide valuable insight to our investigation.
 
@@ -142,13 +142,13 @@ As seen in Section \ref{sec:relatedwork}, in the current literature we did not f
 
 \emph{Feasibility of forged increased distance report relay attacks}\\
 
-We first present a detailed description of various distance-bounding protocols using different kinds of approaches to check distances between parties, explaining how do their work and their limitations.
+We first present a detailed description of various distance-bounding protocols using different kinds of approaches to check distances between parties, explaining how do they work and their limitations.
 
 Following the protocol discussion, we explore some real world scenarios that could use these protocols. Some theoretical attacks on these systems will be proposed, discussing their feasibility and consequences on the studied systems. This analysis is necessary, as the first goal of this project is to prove that these attacks can be dangerous, given the right circumstances. The proposed scenarios are diverse, both in context and properties of the systems involved, implying that the possible solutions for one case might not suit others, especially when considering hardware limitations and economic costs.
 
 After the discussion on the study cases, an evaluation of other systems that could be used to prevent those attacks will follow. This evaluation will include GPS location, INS, as well as RADAR detection. The investigation on GPS and INS systems will focus on their usability as positioning systems, while the study of RADAR will evaluate its usefulness when attempting to physically detect attackers.
 
-If the results from this research determine that these attacks can pose a threat and that the alternative systems are no enough to prevent them, we will consider a second research question:\\
+If the results from this research determine that these attacks can pose a threat and that the alternative systems are not enough to prevent them, we will consider a second research question:\\
 
 \emph{Preventing forged increased distance report relay attacks}\\
 
@@ -164,15 +164,13 @@ This second research question will focus on providing solutions to the issues st
 \section{Methodology}
 \label{sec:methodology}
 
-This project will be a theoretical research on the current distance-bounding protocols, and their inability to detect increased distance reports. We intend to expose the limitations of these protocols on some real world scenarios, and ultimately offer solutions to them.
+This project will be a theoretical research on the current distance-bounding protocols, and their inability to detect increased distance reports. We intend to expose the limitations of these protocols on specific real world scenarios, and ultimately offer solutions to them.
 
 First, we provide a review of the available literature about distance-bounding protocols, in order to determine which of them is best suited for our research. A discussion of alternative systems that could be used to prevent these attacks will be provided as well.
 
-Following the distance-bounding protocols description, this document will propose some systems that could be vulnerable to these attacks, reviewing the difficulty of these attacks and the consequences these attacks might have. In particular, the focus will be on autonomous cars and drones. These scenarios will be the basis for our research.
+Following the distance-bounding protocols description, this document will propose systems that could be vulnerable to these attacks, reviewing the difficulty of these attacks and the consequences these attacks might have. In particular, the focus will be on autonomous cars and drones. These scenarios will be the basis for our research.
 
-On the last part of the paper, variation proposals of the distance-bounding protocols will be provided, in order to effectively reduce the threat these attacks pose. We discuss the increase in security these solutions achieve, as well as evaluating the feasibility of implementing them on our study cases.
-
-
+At the last part of the paper, variation proposals of the distance-bounding protocols will be provided, in order to effectively reduce the threat these attacks pose. We discuss the increase in security these solutions achieve, as well as evaluating the feasibility of implementing them on our study cases.
 
 
 
@@ -184,27 +182,26 @@ On the last part of the paper, variation proposals of the distance-bounding prot
 
 
 
-\section{Results}
-\label{sec:results}
 
-\subsection{Distance-bounding protocols and alternative systems}
-\label{sec:background}
 
-In this subsection we will discuss distance bounding protocols, the GPS and INR location systems and RADAR detection. All of them are relevant topics to our research. First we will explain the current distance bounding protocols, as we will use them as a starting point for our research. Then we will move on to GPS, and explain why systems shouldn't rely completely on it, hence the need to develop more powerful distance bounding protocols for our study cases. Lastly, we will discuss the possibility of using radar detection and Inertial Navigation System to fight the proposed attack.
+\section{Distance-bounding protocols and alternative systems}
+\label{sec:dbandalternative}
+
+In this subsection we will discuss distance bounding protocols, the GPS and INS location systems and RADAR detection. All of them are relevant topics to our research. First we will explain the current distance bounding protocols, as we will use them as a starting point for our research. Then, we will move on to GPS, and explain why systems shouldn't rely completely on it, hence the need to develop more powerful distance bounding protocols for our study cases. Lastly, we will discuss the possibility of using radar detection and Inertial Navigation System to fight the proposed attack.
 
 \subsubsection{Distance bounding}
 
-Distance bounding protocols were developed as a response to relay attacks that attempt to fool systems that validate a users proximity to a validation point. Common scenarios of these applications are found in access control systems, such as smartcards to access buildings or cars using remote passive keys.
+Distance bounding protocols were developed as a countermeasure to relay attacks that attempt to fool systems that validate the proximity of a user to a validation point. Common scenarios of these applications are found in access control systems, such as smartcards to access buildings or cars using remote passive keys.
 
 These attacks try to use properties of the systems used in the communications (such as signal intensity or message time of flight (ToF)) to validate the proximity of users. Based on the previous studies available\cite{capkun2006secure}, we will proceed to briefly discuss these methods:
 
 \begin{description}
-  \item[Signal Intensity] Signal intensity protocols try to achieve proper location of other nodes by measuring the received signal strength. Previous work available in the public literature\cite{seshadri2005bayesian} proves the usefulness of this location system. Even though attacks on this systems are hard to perform \cite{sheng2008detecting}, the defences against them rely mostly on anomaly detection. The reliability of these systems can be decreased in heavily adverse situations, and the ToF methods discussed next provide a higher degree of security.
-  \item[Ultrasound ToF] Ultrasound ToF measures the round-trip time of messages sent and received from the parties measuring the distance between them. This does not depend on the signal strength for the measurement, although ultrasound-based ToF has the latent vulnerability that other methods such as radio frequency or optical wires attackers can surpass the speed of the ultrasound communication, effectively being able to relay information faster than the legitimate infrastructure\cite{capkun2006secure}.
+  \item[Signal Intensity] Signal intensity protocols try to achieve proper location of other nodes by measuring the received signal strength. Previous work available in the public literature\cite{seshadri2005bayesian} proves the usefulness of this location system. Even though attacks on these systems are hard to perform \cite{sheng2008detecting}, the majority of defences against them rely on anomaly detection. The reliability of these systems can be decreased in heavily adverse situations, and the ToF methods discussed next provide a higher degree of security.
+  \item[Ultrasound ToF] Ultrasound ToF measures the round-trip time of messages sent and received from the parties measuring the distance between them. This does not depend on the signal strength for the measurement, although ultrasound-based ToF has the latent vulnerability that other methods, such as radio frequency or optical wires, attackers can surpass the speed of the ultrasound communication, effectively being able to relay information faster than the legitimate infrastructure\cite{capkun2006secure}.
   \item[Radio ToF] Radio-based ToF uses the same method as ultrasound ToF to perform the distance check. The key of the success of this method is that the information transmitted travels at speeds near the speed of light, meaning there is no physical way to fake one node is closer than it really is. Practical studies on this method \cite{rasmussen2010realization} developed hardware that can perform the operations required under 1ns, meaning that the maximum theoretical distance an attacker can shorten its reported distance is under 15cm.
 \end{description}
 
-In this project we use Radio ToF distance-bounding as a basis for our work, as it is proven to be the most secure and reliable method. In particular, the implementation that will be assumed to be used, will be the one described in \cite{rasmussen2010realization}, as it is the most recent and secure developed protocol. This distance-bounding protocol is based purely on analog signals, avoiding the time required to convert analog signals into digital signals. A graphical diagram of the communication channels can be found in Figure \ref{fig:dbounding1}, and following next there is a description of the inner workings of the system:
+In this project we use Radio ToF distance-bounding as a basis for our work, as it is proven to be the most secure and reliable method. In particular, the implementation that will be assumed to be used, will be the one described in \cite{rasmussen2010realization}, as it is the most recent and secure developed protocol. This distance-bounding protocol is based purely on analog signals, avoiding the time required to convert analog signals into digital signals. A graphical diagram of the communication channels can be found in Figure \ref{fig:dbounding1} and, following next, there is a description of the inner workings of the system:
 
 
 
@@ -222,7 +219,7 @@ In this project we use Radio ToF distance-bounding as a basis for our work, as i
 \begin{figure}[h!]
   \centering
     \includegraphics[width=1\textwidth]{images/dbounding.png}
-  \caption{Channels in the distance-bounding Protocol proposed by \citeauthor{rasmussen2010realization}}
+  \caption{Channels in the distance-bounding Protocol proposed by \citeauthor{rasmussen2010realization}.}
   \label{fig:dbounding1}
 \end{figure}
 
@@ -232,25 +229,25 @@ However, although this protocol alone can prevent relay attacks attempting to fo
 
 
 
-\subsubsection{GPS location}
+\subsection{GPS location}
 
 It could be argued that GPS location can be used to prevent the attacks that we will discuss on the next subsection. However, GPS signals have their own weaknesses both with and without presence of adversaries.
 
 In settings without adversaries, GPS positioning cannot be reliably used indoors or underground, and sometimes the presence of tall buildings or structures nearby is enough to disrupt its data.
 
-Speaking of scenarios with one or multiple adversaries, even though there are many countermeasures to prevent attacks against GPS positioning \cite{warner2003gps, wen2005countermeasures, jafarnia2012gps}, there do not provide complete security, similar to the Signal Intensity location protocol.
+Considering scenarios with one or multiple adversaries, even though there are many countermeasures to prevent attacks against GPS positioning \cite{warner2003gps, wen2005countermeasures, jafarnia2012gps}, they do not provide complete security, similar to the Signal Intensity location protocol.
 
-Due these problems, he U.S. government actually recommends to always have backup systems for GPS and suggests to never rely entirely on it\footnote{\url{http://www.gps.gov/support/faq/#jamming}}. Based on these premises we will assume that GPS is not a part of our system, or that we cannot rely on it.
+Due to these problems, the U.S. government actually recommends to always have backup systems for GPS and suggests to never rely entirely on it\footnote{\url{http://www.gps.gov/support/faq/#jamming}}. Based on these premises we will assume that GPS is not a part of our system, or that we cannot rely on it.
 
-\subsubsection{Inertial Navigation System}
+\subsection{Inertial Navigation System}
 
 Inertial Navigation Systems are devices used to provide machines a sense of self-awareness of their current position, based on their initial position and the chosen routes, by using accelerometers and gyroscopes. These systems could be relevant for this research, as they share the same \emph{relative positioning} focus, staying independent from third party sensors.
 
-The work done by \citeauthor{woodman2007introduction} in \cite{woodman2007introduction} evaluates the cost and performance of the INS. The conclusion from that work is that available INS hardware cannot realistically provide an accuracy below $5m$ of error after $60$ seconds of operation. In an environment with multiple nodes using this system, this means that after $60$ seconds, the location detection between two nodes could be as biased as $10m$. This also limits is usability as a stand-alone positioning system, as the error will only grow larger as time goes on.
+INS hardware cannot realistically provide an accuracy below $5m$ of error after $60$ seconds of operation \cite{woodman2007introduction}. In an environment with multiple nodes using this system, this means that after $60$ seconds, the location detection between two nodes could be as biased as $10m$. This also limits its usability as a stand-alone positioning system, as the error will only grow larger as time progresses.
 
-Although INS accuracy is rapidly improving over the years, right now is not a viable solution or countermeasure to our problem.
+Although INS accuracy is rapidly improving over the years, at the moment is not a viable solution or countermeasure to our problem.
 
-\subsubsection{RADAR detection}
+\subsection{RADAR detection}
 
 One way to protect against this kind attack could be by attempting to physically detect the attacker that is attempting to perform the relaying of messages. If an unidentified object is detected between the parties and it is confirmed that it does not belong to the system, security measures could be taken to prevent such relay attacks.
 
@@ -300,7 +297,8 @@ We therefore conclude that, in the current state of stealth and anti-stealth tec
 
 
 
-\subsection{Feasibility of forged increased distance report relay attacks}
+\section{Feasibility of forged increased distance report relay attacks}
+\label{sec:attackfeasibility}
 
 The theoretical attack we propose relies on the fact that the discussed protocols regarding distance bounding on the available literature do not prevent relay attacks that report an increased distance between two legitimate parties.
 
@@ -319,9 +317,9 @@ Such attacks are difficult to perform in practice, as they require relaying and 
 
 Following next, we will discuss some real world applications that may be interesting for this research.
 
-\subsubsection{Study cases}
+\subsection{Study cases}
 
-\paragraph{First example of real world attack: Autonomous cars}
+\subsubsection{First example of real world attack: Autonomous cars}
 
 Autonomous driving is a topic that is receiving a lot of attention by many researchers around the globe in recent years. The variety and quantity of studies on this field \cite{franke1999autonomous,continentalautonomous,levinsontowards,geiger2012we}, prove its relevance as an interesting subject from the point of view of computer vision and location systems.
 
@@ -334,7 +332,7 @@ Autonomously driving vehicles could also use distance bounding protocols to perf
 Although the introduction of these distance bounding protocols on autonomous cars could prove to be useful for these purposes, it would also add a vulnerability in the form of the previously mentioned reported distance increase relay attacks.
 
 
-\paragraph{Second example of real world attack: Drone MANETs}
+\subsubsection{Second example of real world attack: Drone MANETs}
 
 In the recent years there has been a huge increase on the interest towards drones\footnote{\url{http://www.google.com/trends/explore#q=drone}}, due the emergence of topics such as Amazon Prime delivery drones (Figure \ref{fig:amazondrone} or the usage of unmanned aircraft by the US military.
 
@@ -387,13 +385,14 @@ This attack might prove considerably difficult to perform, but can have catastro
 
 
 
-\subsection{Preventing forged increased distance report relay attacks}
+\section{Preventing forged increased distance report relay attacks}
+\label{sec:prevention}
 
 In this section some countermeasures to the studied relay attacks are proposed. These solutions can stack with one another and, in fact, it is recommended to do so, as each one of them provides an additional layer of security.
 
 These solutions do not need new protocols or hardware, and instead rely on the replication and addition of redundancy to provide protection against the fake increased distance reports. This means that the systems discussed on the first research question could implement these with minimal modifications.
 
-\subsubsection{Introducing behaviour verification}
+\subsection{Introducing behaviour verification}
 
 Nowadays storage is hardly a limitation for systems, as the price, size and weight of these components have decreased to the point where multiple gigabytes of information can be stored in inexpensive memories that have the size of a screw.
 
@@ -401,7 +400,7 @@ Therefore, storing information on the device about the recent location of one or
 
 
 
-\subsubsection{Utilize multiple distance-bounding signals}
+\subsection{Utilize multiple distance-bounding signals}
 
 Historically, distance-bounding protocols are used to validate an upper-bound distance between a prover and a validating station. As such, the exact location of a prover is not required, only its distance to the validating station matters (that is, check if the prover is within a certain radius of the prover in a 2D scenario, or a sphere in a 3D scenario).
 
@@ -420,7 +419,7 @@ Figure \ref{fig:attackexample3} provides a graphical explanation of this defence
 
 This protection method has two major downsides. The first is that devices should carry more antennas, increasing their cost. Additionally, the device using this system needs to have a minimum size for it to be reliable, as the antennas need to be at a certain distance from one another to obtain a correct triangulation (otherwise the error margins would outweigh the correctness of the obtained distance values)
 
-\subsubsection{Avoid centralized systems: distributed knowledge}
+\subsection{Avoid centralized systems: distributed knowledge}
 
 When the first attack definition was proposed on Figure \ref{fig:attackexample1}, only one of the nodes was reporting its location to the other. Although this setup may simplify the operation and decision-making of these nodes (by having only one node in the system taking decisions for the others), it also makes the system more vulnerable to relay attacks.
 
@@ -475,7 +474,7 @@ Multiple solutions to these distance-amplification attacks have been proposed an
 \section{Acknowledgements}
 \label{sec:acknowledgements}
 
-We would like to thank Jordi van den Breekel and Paul van Iterson, supervisors of this project at KPMG, for their support over the duration of this project. In a similar way, we would also like to thank Jaap van Ginkel and Arno Bakker, staff at the System and Network Engineering MSc for their insight and guidance.
+We would like to thank Jordi van den Breekel and Paul van Iterson, supervisors of this project at KPMG, for their support over the course of this project. In a similar way, we would also like to thank Jaap van Ginkel and Arno Bakker, staff at the System and Network Engineering MSc, for their insight and guidance.
 
 
 

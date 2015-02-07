@@ -49,7 +49,7 @@ For a long time, distance-bounding protocols have been an extensive research top
 
 This project first proposes some scenarios, in which the involved devices use distance-bounding protocols to perform distance checks between themselves. Relay attacks that attempt to fake increased distance reports between these devices will be studied, and a discussion of the motivation these attacks might have, as well as their consequences, will be provided.
 
-Afterwards, available systems that could be used instead of distance bounding protocols will be reviewed. In particular, the analysis will focus on Global Positioning System (GPS), Inertial Navigation System (INS), Radio Detecting and Ranging (RADAR) and Light Detection and Ranging (LIDAR) systems. This study will aim to justify developing solutions based on the current distance-bounding protocols, providing an insight on the limitations of these other systems for these purposes.
+Afterwards, available systems that could be used instead of distance bounding protocols will be reviewed. In particular, the analysis will focus on Global Positioning System (GPS), Inertial Navigation System (INS) and Radio Detecting and Ranging (RADAR) systems. This study will aim to justify developing solutions based on the current distance-bounding protocols, providing an insight on the limitations of these other systems for these purposes.
 
 Some low-cost, easy-to-implement enhancements on the distance-bounding protocols will be proposed, which greatly diminish the success chances of these relay attacks against systems using these protocols.
 \end{abstract}
@@ -146,7 +146,7 @@ We first present a detailed description of various distance-bounding protocols u
 
 Following the protocol discussion, we explore some real world scenarios that could use these protocols. Some theoretical attacks on these systems will be proposed, discussing their feasibility and consequences on the studied systems. This analysis is necessary, as the first goal of this project is to prove that these attacks can be dangerous, given the right circumstances. The proposed scenarios are diverse, both in context and properties of the systems involved, implying that the possible solutions for one case might not suit others, especially when considering hardware limitations and economic costs.
 
-After the discussion on the study cases, an evaluation of other systems that could be used to prevent those attacks will follow. This evaluation will include GPS location, INS, as well as RADAR and LIDAR. The investigation on GPS and INS systems will focus on their usability as positioning systems, while the study of RADAR and LIDAR will evaluate their usefulness when attempting to physically detect attackers.
+After the discussion on the study cases, an evaluation of other systems that could be used to prevent those attacks will follow. This evaluation will include GPS location, INS, as well as RADAR detection. The investigation on GPS and INS systems will focus on their usability as positioning systems, while the study of RADAR will evaluate its usefulness when attempting to physically detect attackers.
 
 If the results from this research determine that these attacks can pose a threat and that the alternative systems are no enough to prevent them, we will consider a second research question:\\
 
@@ -187,6 +187,93 @@ On the last part of the paper, variation proposals of the distance-bounding prot
 \section{Results}
 \label{sec:results}
 
+\subsection{Distance-bounding protocols and alternative systems}
+\label{sec:background}
+
+In this subsection we will discuss distance bounding protocols, the GPS and INR location systems and RADAR detection. All of them are relevant topics to our research. First we will explain the current distance bounding protocols, as we will use them as a starting point for our research. Then we will move on to GPS, and explain why systems shouldn't rely completely on it, hence the need to develop more powerful distance bounding protocols for our study cases. Lastly, we will discuss the possibility of using radar detection and Inertial Navigation System to fight the proposed attack.
+
+\subsubsection{Distance bounding}
+
+Distance bounding protocols were developed as a response to relay attacks that attempt to fool systems that validate a users proximity to a validation point. Common scenarios of these applications are found in access control systems, such as smartcards to access buildings or cars using remote passive keys.
+
+These attacks try to use properties of the systems used in the communications (such as signal intensity or message time of flight (ToF)) to validate the proximity of users. Based on the previous studies available\cite{capkun2006secure}, we will proceed to briefly discuss these methods:
+
+\begin{description}
+  \item[Signal Intensity] Signal intensity protocols try to achieve proper location of other nodes by measuring the received signal strength. Previous work available in the public literature\cite{seshadri2005bayesian} proves the usefulness of this location system. Even though attacks on this systems are hard to perform \cite{sheng2008detecting}, the defences against them rely mostly on anomaly detection. The reliability of these systems can be decreased in heavily adverse situations, and the ToF methods discussed next provide a higher degree of security.
+  \item[Ultrasound ToF] Ultrasound ToF measures the round-trip time of messages sent and received from the parties measuring the distance between them. This does not depend on the signal strength for the measurement, although ultrasound-based ToF has the latent vulnerability that other methods such as radio frequency or optical wires attackers can surpass the speed of the ultrasound communication, effectively being able to relay information faster than the legitimate infrastructure\cite{capkun2006secure}.
+  \item[Radio ToF] Radio-based ToF uses the same method as ultrasound ToF to perform the distance check. The key of the success of this method is that the information transmitted travels at speeds near the speed of light, meaning there is no physical way to fake one node is closer than it really is. Practical studies on this method \cite{rasmussen2010realization} developed hardware that can perform the operations required under 1ns, meaning that the maximum theoretical distance an attacker can shorten its reported distance is under 15cm.
+\end{description}
+
+In this project we will be using Radio ToF as a basis for our work, as it is proven to be the most secure and reliable method. However, this method alone is not enough to fight reports that forge an increase on the real distance between parties, and this will be the main focus of our research.
+
+\subsubsection{GPS location}
+
+It could be argued that GPS location can be used to prevent the attacks that we will discuss on the next subsection. However, GPS signals have their own weaknesses both with and without presence of adversaries.
+
+In settings without adversaries, GPS positioning cannot be reliably used indoors or underground, and sometimes the presence of tall buildings or structures nearby is enough to disrupt its data.
+
+Speaking of scenarios with one or multiple adversaries, even though there are many countermeasures to prevent attacks against GPS positioning \cite{warner2003gps, wen2005countermeasures, jafarnia2012gps}, there do not provide complete security, similar to the Signal Intensity location protocol.
+
+Due these problems, he U.S. government actually recommends to always have backup systems for GPS and suggests to never rely entirely on it\footnote{\url{http://www.gps.gov/support/faq/#jamming}}. Based on these premises we will assume that GPS is not a part of our system, or that we cannot rely on it.
+
+\subsubsection{Inertial Navigation System}
+
+Inertial Navigation Systems are devices used to provide machines a sense of self-awareness of their current position, based on their initial position and the chosen routes, by using accelerometers and gyroscopes. These systems could be relevant for this research, as they share the same \emph{relative positioning} focus, staying independent from third party sensors.
+
+The work done by \citeauthor{woodman2007introduction} in \cite{woodman2007introduction} evaluates the cost and performance of the INS. The conclusion from that work is that available INS hardware cannot realistically provide an accuracy below $5m$ of error after $60$ seconds of operation. In an environment with multiple nodes using this system, this means that after $60$ seconds, the location detection between two nodes could be as biased as $10m$. This also limits is usability as a stand-alone positioning system, as the error will only grow larger as time goes on.
+
+Although INS accuracy is rapidly improving over the years, right now is not a viable solution or countermeasure to our problem.
+
+\subsubsection{RADAR detection}
+
+One way to protect against this kind attack could be by attempting to physically detect the attacker that is attempting to perform the relaying of messages. If an unidentified object is detected between the parties and it is confirmed that it does not belong to the system, security measures could be taken to prevent such relay attacks.
+
+However, recent studies as the one by \citeauthor{cadirci2009rf} in \cite{cadirci2009rf}, state that Radar Cross Section\footnote{\url{http://www.microwaves101.com/encyclopedia/Navy handbook/4.11 Radar Cross-Section (RCS).pdf}} (RCS), a measurement used to rate the ability to reflect radio waves by an object, can be heavily decreased by employing proper techniques such as the usage of special materials, radiowave-absorbing paint and specific shapes that minimize and disperse radio reflection.
+
+As a real world example, the first operational aircraft designed to employ advanced stealth technology, the Lockheed F-117 Nighthawk from the United States Air Force, with a wingspan and a length of $13.20m$ and $20m$ respectively\footnote{\url{http://www.fighter-planes.com/info/f117_nighthawk.htm}}, has a RCS signature of $0.025m^2$, which is similar to that of a bird\cite{cadirci2009rf}.
+
+In the attack scenarios proposed in Section \ref{sec:results}, flying drones would be the most versatile device to perform the attacks. Considering these drones can be considerably smaller than these aircraft (depending on the situation, the used drone could be shorter than $1m$ in length, height and width), it is easy to foresee that they would be almost invisible to radar systems. If the attack scenario does not require the attacker to fly at relative high speeds, its RCS signature could be further decreased by designing an attack drone with a shape specifically made to absorb radar waves.
+
+We therefore conclude that, in the current state of stealth and anti-stealth technologies, RADAR detection would not be a strong countermeasure to prevent against that kind of attacks.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 \subsection{How feasible are forged increased distance report relay attacks?}
 
 The theoretical attack we propose relies on the fact that the discussed protocols regarding distance bounding on the available literature do not prevent relay attacks that report an increased distance between two legitimate parties.
@@ -216,7 +303,7 @@ These autonomous cars use multiple systems to check and validate their position 
 
 Distance bounding protocols do not seem to be an active part of these systems, although they could be useful. First of all, the most obvious utility would be to provide an additional security layer to the system, providing additional means to locate other vehicles in normal conditions, or as a backup system in case other devices fail. Secondly, this feature could be used as well to detect pedestrians in a future if devices such as mobile phones were adapted for this purpose. 
 
-Autonomously driving vehicles could also use distance bounding protocols to perform distance verification of specific targets. The distance bounding protocols developed in  \cite{rasmussen2010realization, capkun2006secure} can be used to check the distance with specific targets. This is interesting in this environment as in a high traffic road it is difficult to keep track of other specific vehicles through the use of LIDAR or computer vision system. This functionality could be used, for example, to have a car follow another without knowing the route beforehand.
+Autonomously driving vehicles could also use distance bounding protocols to perform distance verification of specific targets. The distance bounding protocols developed in  \cite{rasmussen2010realization, capkun2006secure} can be used to check the distance with specific targets. This is interesting in this environment as in a high traffic road it is difficult to keep track of other specific vehicles through the use of Light Detection and Ranging (LIDAR) or computer vision system. This functionality could be used, for example, to have a car follow another without knowing the route beforehand.
 
 Although the introduction of these distance bounding protocols on autonomous cars could prove to be useful for these purposes, it would also add a vulnerability in the form of the previously mentioned reported distance increase relay attacks.
 

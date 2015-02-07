@@ -187,13 +187,13 @@ At the last part of the paper, variation proposals of the distance-bounding prot
 \section{Distance-bounding protocols and alternative systems}
 \label{sec:dbandalternative}
 
-In this subsection we will discuss distance bounding protocols, the GPS and INS location systems and RADAR detection. All of them are relevant topics to our research. First we will explain the current distance bounding protocols, as we will use them as a starting point for our research. Then, we will move on to GPS, and explain why systems shouldn't rely completely on it, hence the need to develop more powerful distance bounding protocols for our study cases. Lastly, we will discuss the possibility of using RADAR detection and Inertial Navigation System to fight the proposed attack.\\
+In this section, we discuss distance-bounding protocols, as well as GPS and INS location systems and RADAR detection. All of them are relevant topics to our research. First, an explanation on the current distance bounding protocols will be provided, as they are used as a starting point for our research. Afterwards, GPS and INS systems will be evaluated, explaining why the studied systems shouldn't rely completely on them, hence the need to develop more powerful distance-bounding protocols. Lastly, we discuss the possibility of using RADAR detection to fight the proposed attacks.\\
 
 \subsection{Distance-bounding protocols}
 
-Distance bounding protocols were developed as a countermeasure to relay attacks that attempt to fool systems that validate the proximity of a user to a validation point. Common scenarios of these applications are found in access control systems, such as smartcards to access buildings or cars using remote passive keys.\\
+Distance-bounding protocols were developed as a countermeasure to relay attacks that attempt to fool systems that validate the proximity of a user to a validation point. Common scenarios of these applications are found in ACS, such as smartcards to access buildings or cars using PKES.\\
 
-These attacks try to use properties of the systems used in the communications (such as signal intensity or message time of flight (ToF)) to validate the proximity of users. Based on the previous studies available\cite{capkun2006secure}, we will proceed to briefly discuss these methods:\\
+These distance-bounding protocols try to use properties of the systems involved in the communications (such as signal intensity or message Time-of-Flight (ToF)) to validate the proximity of users. Based on the previous studies available \cite{capkun2006secure}, we will proceed to briefly discuss these methods:\\
 
 \begin{description}
   \item[Signal Intensity] Signal intensity protocols try to achieve proper location of other nodes by measuring the received signal strength. Previous work available in the public literature\cite{seshadri2005bayesian} proves the usefulness of this location system. Even though attacks on these systems are hard to perform \cite{sheng2008detecting}, the majority of defences against them rely on anomaly detection. The reliability of these systems can be decreased in heavily adverse situations, and the ToF methods discussed next provide a higher degree of security.\\

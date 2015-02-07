@@ -196,21 +196,23 @@ Distance-bounding protocols were developed as a countermeasure to relay attacks 
 These distance-bounding protocols try to use properties of the systems involved in the communications (such as signal intensity or message Time-of-Flight (ToF)) to validate the proximity of users. Based on the previous studies available \cite{capkun2006secure}, we will proceed to briefly discuss these methods:\\
 
 \begin{description}
-  \item[Signal Intensity] Signal intensity protocols try to achieve proper location of other nodes by measuring the received signal strength. Previous work available in the public literature\cite{seshadri2005bayesian} proves the usefulness of this location system. Even though attacks on these systems are hard to perform \cite{sheng2008detecting}, the majority of defences against them rely on anomaly detection. The reliability of these systems can be decreased in heavily adverse situations, and the ToF methods discussed next provide a higher degree of security.\\
-  \item[Ultrasound ToF] Ultrasound ToF measures the round-trip time of messages sent and received from the parties measuring the distance between them. This does not depend on the signal strength for the measurement, although ultrasound-based ToF has the latent vulnerability that other methods, such as radio frequency or optical wires, attackers can surpass the speed of the ultrasound communication, effectively being able to relay information faster than the legitimate infrastructure\cite{capkun2006secure}.\\
-  \item[Radio ToF] Radio-based ToF uses the same method as ultrasound ToF to perform the distance check. The key of the success of this method is that the information transmitted travels at speeds near the speed of light, meaning there is no physical way to fake one node is closer than it really is. Practical studies on this method \cite{rasmussen2010realization} developed hardware that can perform the operations required under 1ns, meaning that the maximum theoretical distance an attacker can shorten its reported distance is under 15cm.\\\
+  \item[Signal Intensity] Signal intensity protocols try to achieve proper distance checking of other nodes by measuring the received signal strength. Previous work available in the public literature \cite{seshadri2005bayesian} proves the usefulness of this location system. Even though attacks on these systems are hard to perform \cite{sheng2008detecting}, the majority of defences against them rely only on anomaly detection. ToF methods discussed next provide a higher degree of security when comparing both systems working alone, but signal intensity checking can still be used as an additional security feature in combination with the other methods.\\
+  
+  \item[Ultrasound ToF] Ultrasound ToF measures the round-trip time of messages sent and received from the parties measuring the distance between them. This does not depend on the signal strength for the measurement, although ultrasound-based ToF has the latent vulnerability that other platforms, such as radio communication or optical wires, can surpass the speed of the ultrasound communication, effectively being able to relay information faster than the legitimate infrastructure \cite{capkun2006secure}.\\
+  
+  \item[Radio ToF] Radio-based ToF uses the same idea as ultrasound ToF to perform the distance checking. The key of the success of this method is that the information transmitted travels at speeds close to the speed of light, meaning that it is physically impossible to fake that one node is closer than it really is. Practical studies on this method \cite{rasmussen2010realization} developed hardware that can perform the operations required under $1ns$. Therefore, the maximum theoretical distance an attacker can shorten its reported distance is under $15cm$, as that is the distance light travels in that amount of time.\\\
 \end{description}
 
-In this project we use Radio ToF distance-bounding as a basis for our work, as it is proven to be the most secure and reliable method. In particular, the implementation that will be assumed to be used, will be the one described in \cite{rasmussen2010realization}, as it is the most recent and secure developed protocol. This distance-bounding protocol is based purely on analog signals, avoiding the time required to convert analog signals into digital signals. A graphical diagram of the communication channels can be found in Figure \ref{fig:dbounding1} and, following next, there is a description of the inner workings of the system:\\
+In this project we use Radio ToF distance-bounding as a basis for our work, as it is proven to be the most secure and reliable method. In particular, the implementation that will be assumed to be used, will be the one described in \cite{rasmussen2010realization}, as it is the most recent and secure protocol. This distance-bounding protocol is based purely on analog signals, avoiding the time required to convert analog signals into digital signals. A graphical diagram of the communication channels can be found in Figure \ref{fig:dbounding1} and, following next, there is a description of the inner workings of the system:\\
 
 
 
 \begin{enumerate}
-  \item First, both validator $V$ and prover $P$ exchange a nonce $N$. This can be done on-the-fly or before the system starts.
+  \item First, both validator $V$ and prover $P$ exchange a nonce $N$. This can be done on-the-fly through a secure channel or before the system starts.
   \item When it is necessary to verify the current distance of the two parties, $V$ starts sending challenging bits $C_{n}$ to $P$.
   \item For every bit $C_{i}$ received, $P$ sends back a response in the form of $C_{i}+N_{i}$. The answer is done by sending the bit $C_{i}$ through one of the two communication channels for the challenge answers, while the bit $N_{i}$ is encoded implicitly in the form of which answer channel was selected. For example, if the current nonce bit $N_{i}$ is $0$, the $C_{i}$ answer would be sent using the first channel, whereas if its value of $N_{i}$ was $1$, the second channel would be used.
   \item Step 3 is repeated $n$ times. The chances of an attacker faking one of the response transmissions is $\frac{1}{2}$, but after $n$ times of repeating this operation, the possibility of an attacker faking the whole procedure goes down to $\frac{1}{2\textsuperscript{n}}$. 
-  \item Finally, $V$ can calculate the mean value of all the challenge-response ToF, effectively obtaining the distance between him and $P$.
+  \item Finally, $V$ can calculate the mean value of all the received challenge-response ToFs, effectively obtaining the distance between him and $P$.
 \end{enumerate}
 
 
@@ -219,7 +221,7 @@ In this project we use Radio ToF distance-bounding as a basis for our work, as i
 \begin{figure}[h!]
   \centering
     \includegraphics[width=1\textwidth]{images/dbounding.png}
-  \caption{Channels in the distance-bounding Protocol proposed by \citeauthor{rasmussen2010realization}.}
+  \caption{Channels in the distance-bounding Protocol proposed by \citeauthor{rasmussen2010realization} \cite{rasmussen2010realization}.}
   \label{fig:dbounding1}
 \end{figure}
 
@@ -231,31 +233,31 @@ However, although this protocol alone can prevent relay attacks attempting to fo
 
 \subsection{GPS location}
 
-It could be argued that GPS location can be used to prevent the attacks that we will discuss on the next subsection. However, GPS signals have their own weaknesses both with and without presence of adversaries.\\
+It could be argued that GPS location could be used to prevent the attacks that we will discuss on the next section. However, GPS signals have their own weaknesses both with and without presence of adversaries.\\
 
 In settings without adversaries, GPS positioning cannot be reliably used indoors or underground, and sometimes the presence of tall buildings or structures nearby is enough to disrupt its data.\\
 
-Considering scenarios with one or multiple adversaries, even though there are many countermeasures to prevent attacks against GPS positioning \cite{warner2003gps, wen2005countermeasures, jafarnia2012gps}, they do not provide complete security, similar to the Signal Intensity location protocol.\\
+Considering scenarios with one or multiple adversaries, even though there are many countermeasures to prevent attacks against GPS positioning \cite{jafarnia2012gps, warner2003gps, wen2005countermeasures}, they do not provide complete security, similar to the signal intensity ranging protocol.\\
 
 Due to these problems, the U.S. government actually recommends to always have backup systems for GPS and suggests to never rely entirely on it\footnote{\url{http://www.gps.gov/support/faq/#jamming}}. Based on these premises we will assume that GPS is not a part of our system, or that we cannot rely on it.\\
 
 \subsection{Inertial Navigation System}
 
-Inertial Navigation Systems are devices used to provide machines a sense of self-awareness of their current position, based on their initial position and the chosen routes, by using accelerometers and gyroscopes. These systems could be relevant for this research, as they share the same \emph{relative positioning} focus, staying independent from third party sensors.\\
+Inertial Navigation Systems are devices used to provide machines a sense of self-awareness of their current position, based on their initial position and the chosen routes, by using accelerometers and gyroscopes. These systems could be relevant for this research, as they share the same positioning approach, staying independent from third party sensors.\\
 
-INS hardware cannot realistically provide an accuracy below $5m$ of error after $60$ seconds of operation \cite{woodman2007introduction}. In an environment with multiple nodes using this system, this means that after $60$ seconds, the location detection between two nodes could be as biased as $10m$. This also limits its usability as a stand-alone positioning system, as the error will only grow larger as time progresses.\\
+However, INS hardware cannot realistically provide an accuracy below $5m$ of error after $60$ seconds of operation \cite{woodman2007introduction}. In an environment with multiple nodes using this system, this means that after $60$ seconds, the location detection between two nodes could be as biased as $10m$. This also limits its usability as a stand-alone positioning system, as the error will only grow larger as time progresses.\\
 
-Although INS accuracy is rapidly improving over the years, at the moment is not a viable solution or countermeasure to our problem.\\
+Although INS accuracy is improving over the years, at the moment it is not a viable solution or countermeasure to our problem.\\
 
 \subsection{RADAR detection}
 
-One way to protect against this kind attack could be by attempting to physically detect the attacker that is attempting to perform the relaying of messages. If an unidentified object is detected between the parties and it is confirmed that it does not belong to the system, security measures could be taken to prevent such relay attacks.\\
+One way to protect against this kind attack could be by attempting to physically detect the attacker that is performing the relaying of messages. If an unidentified object is detected between the parties and it is confirmed that it does not belong to the system, security measures could be taken to prevent such relay attacks.\\
 
 However, recent studies as the one by \citeauthor{cadirci2009rf} in \cite{cadirci2009rf}, state that Radar Cross Section\footnote{\url{http://www.microwaves101.com/encyclopedia/Navy handbook/4.11 Radar Cross-Section (RCS).pdf}} (RCS), a measurement used to rate the ability to reflect radio waves by an object, can be heavily decreased by employing proper techniques such as the usage of special materials, radiowave-absorbing paint and specific shapes that minimize and disperse radio reflection.\\
 
-As a real world example, the first operational aircraft designed to employ advanced stealth technology, the Lockheed F-117 Nighthawk from the United States Air Force, with a wingspan and a length of $13.20m$ and $20m$ respectively\footnote{\url{http://www.fighter-planes.com/info/f117_nighthawk.htm}}, has a RCS signature of $0.025m^2$, which is similar to that of a bird\cite{cadirci2009rf}.\\
+As a real world example, the first operational aircraft designed to employ advanced stealth technology, the Lockheed F-117 Nighthawk from the United States Air Force, with a wingspan and a length of $13.20m$ and $20m$ respectively\footnote{\url{http://www.fighter-planes.com/info/f117_nighthawk.htm}}, has a RCS signature of $0.025m^2$, which is similar to that of a bird \cite{cadirci2009rf}.\\
 
-In the attack scenarios proposed in Section \ref{sec:results}, flying drones would be the most versatile device to perform the attacks. Considering these drones can be considerably smaller than these aircraft (depending on the situation, the used drone could be shorter than $1m$ in length, height and width), it is easy to foresee that they would be almost invisible to radar systems. If the attack scenario does not require the attacker to fly at relative high speeds, its RCS signature could be further decreased by designing an attack drone with a shape specifically made to absorb radar waves.\\
+In the attack scenarios proposed in Section \ref{sec:attackfeasibility}, flying drones would be the most versatile device to perform the attacks. Considering these drones can be considerably smaller than these aircraft (depending on the situation, the used drone could be shorter than $1m$ in length, height and width), it is easy to foresee that they would be almost invisible to radar systems. If the attack scenario does not require the attacker to fly at relative high speeds, its RCS signature could be further decreased by designing an attack drone with a shape specifically made to absorb radar waves.\\
 
 We therefore conclude that, in the current state of stealth and anti-stealth technologies, RADAR detection would not be a strong countermeasure to prevent against that kind of attacks.\\
 

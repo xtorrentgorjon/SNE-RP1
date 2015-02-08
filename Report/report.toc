@@ -30,8 +30,8 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {subsection}{\numberline {7.2}Utilize multiple distance-bounding signals}{15}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {7.3}Avoid centralized systems: distributed knowledge}{16}
+\contentsline {subsection}{\numberline {7.3}Avoid centralized systems: distributed knowledge}{17}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {8}Conclusions}{17}
+\contentsline {section}{\numberline {8}Conclusions}{18}
 \defcounter {refsection}{0}\relax 
 \contentsline {section}{\numberline {9}Acknowledgements}{18}

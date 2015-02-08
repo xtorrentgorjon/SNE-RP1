@@ -327,7 +327,7 @@ These autonomous cars use multiple systems to check and validate their position 
 
 Distance-bounding protocols do not seem to be an active part of these systems, although they could be useful. First of all, the most obvious utility would be to provide an extra security layer to the system, providing additional means to locate other vehicles in normal conditions, or as a backup system in case other devices fail. Secondly, this feature could be used as well to detect pedestrians in a future if devices such as mobile phones were adapted for this purpose.\\
 
-Autonomously driving vehicles could also use distance-bounding protocols to perform distance verification of specific targets. The distance-bounding protocols developed in  \cite{capkun2006secure, rasmussen2010realization} can be used to check the distance with specific targets. This is interesting in this environment as in a high traffic road it is difficult to keep track of other specific vehicles through the use of Light Detection and Ranging (LIDAR) or computer vision system. This functionality could be used, for example, to have a car follow another without knowing the route beforehand.\\
+Autonomously driving vehicles could also use distance-bounding protocols to perform distance verification of specific targets. The distance-bounding protocols developed in  \cite{capkun2006secure, rasmussen2010realization} can be used to check the distance with specific targets. This is interesting in this environment as in a high traffic road it is difficult to keep track of other specific vehicles through the use of laser location or computer vision system. This functionality could be used, for example, to have a car follow another without knowing the route beforehand.\\
 
 Although the introduction of these distance bounding protocols on autonomous cars could prove to be useful for these purposes, it would also add a vulnerability in the form of the previously mentioned reported distance increase relay attacks if they are not addressed.\\
 
@@ -398,6 +398,8 @@ Nowadays storage is hardly a limitation for systems, as the price, size and weig
 
 Therefore, storing information on the device about the recent location of one or multiple parties is feasible. Uncoordinated attacks would be prevented with this feature, although it does little to protect against carefully planned ones. All location systems must allow some degree of variation on the measurements, as there may be many reasons for a slight delay in a communication. By successfully using that error margin, an attacker could still attempt to fake distance reports increasingly over a period of time.\\
 
+A major limitation of this countermeasure is that it requires that the devices involved keep the distance-bounding protocol active. Some systems could use the distance-bounding protocol intermittently to save energy or because the requirements of the platform are fulfilled without a constant distance checking. In such environments, an attacker could wait until a distance-check ends and start the attack as soon as the next one begins. If the pause between distance checks was large enough, the system could not distinguish a node that legitimately moved away from a relay attack reporting this increase in distance.\\
+
 
 
 \subsection{Utilize multiple distance-bounding signals}
@@ -417,11 +419,11 @@ Figure \ref{fig:attackexample3} provides a graphical explanation of this defence
   \label{fig:attackexample3}
 \end{figure}
 
-This protection method has two major downsides. The first is that devices should carry more antennas, increasing their cost. Additionally, the device using this system needs to have a minimum size for it to be reliable, as the antennas need to be at a certain distance from one another to obtain a correct triangulation (otherwise the error margins would outweigh the correctness of the obtained distance values).\\
+This protection method has two major downsides. The first is that devices should carry more antennas, increasing their cost. Additionally, the device using this system needs to have a minimum size for it to be reliable, as the antennas need to be at a certain distance from one another to perform a correct triangulation (otherwise the error margins would outweigh the correctness of the obtained distance values).\\
 
 \subsection{Avoid centralized systems: distributed knowledge}
 
-When the first attack definition was proposed on Figure \ref{fig:attackexample1}, only one of the nodes was reporting its location to the other. Although this setup may simplify the operation and decision-making of these nodes (by having only one node in the system taking decisions for the others), it also makes the system more vulnerable to relay attacks.\\
+When the first attack definition was proposed on Figure \ref{fig:attackexample1}, only one of the nodes was reporting its location to the other. Although this configuration may simplify the operation and decision-making of these nodes (by having only one node in the system taking decisions for the others), it also makes the system more vulnerable to relay attacks.\\
 
 If all nodes on the system can share information of the position of neighbour nodes between themselves, an attack on the system becomes considerably more difficult to perform. It is not required that one node checks the distance between him and another one with all the other nodes on the system, although every additional node verifying the information makes it harder to perform an attack on the system. Figure \ref{fig:attackexample4} has a graphic description of what this triangulation achieves.\\
 
@@ -432,7 +434,16 @@ If all nodes on the system can share information of the position of neighbour no
   \label{fig:attackexample4}
 \end{figure}
 
-This trade-off between communication load and security is the only restriction on this solution. Different applications will have different needs, and the delay between messages has to be considered as well (a node A can report to B the position of a third node C on a given time, but B must consider the delay of the transmission with A when checking the received data).\\
+Besides the added load in the communication this countermeasure produces, a major restriction is to properly handle the location reports other devices sent, as the communication between drones is not instantaneous. A node $N_{0}$ attempting to validate the distance of a node $N_{1}$ should perform the following steps:
+
+\begin{enumerate}
+  \item $N_{0}$ starts the distance-bounding protocol with $N_{1}$.
+  \item $N_{0}$ requests other nodes $M_{n}$ their information on the location of $N_{1}$. We note the ToF of these requests as $T_{1n}$. Assume $N_{0}$ knows the location of the other $M_{n}$ nodes, or that it also performs the distance-bounding protocol with them.
+  \item The nodes $M_{n}$ answer the request from $N_{0}$. This answer should include the current location of $N_{1}$, as well as its current speed and the vector of its current direction. The $M_{n}$ nodes can be aware of the speed and direction of $N_{1}$, if the system is using the behaviour verification proposed before in this Section. There will be a certain delay before the nodes $M_{n}$ can answer, as they have to decrypt the received message and process the answer, and then encrypt the answer again before it is sent. All this time $T_{2n}$ is not negligible, and they should measure it and sent it along with their answers. We note the ToF of the response of these messages as $T_{3n}$.
+  \item $N_{0}$ receives the $n$ answers. Then, for each answer $n$, it can calculate the approximate position $N_{1}$ had $\frac{T_{1n}+T_{2n}+T_{3n}}{2}$ seconds ago according to each node $M_{n}$, and using the location of each one of them, it can triangulate the data to obtain their positions relative to its own. Using the information about its speed and direction, it can also obtain an approximation of its current location. Then, it can compare that information to the obtained by using the distance-bounding protocol on Step 1, and determine if all the data is correct.
+\end{enumerate}
+
+
 
 
 
@@ -446,7 +457,7 @@ This trade-off between communication load and security is the only restriction o
 \section{Conclusions}
 \label{sec:conclusions}
 
-From the results on the first research question we can conclude that, even though the explored scenarios are only a subject of investigation right now, and have no commercial use at the moment of writing this document, both autonomous cars and drones will surely be amongst the most important developments in the upcoming years. This makes the vulnerabilities on distance-bounding protocols a latent problem.\\
+From the results on Section \ref{sec:attackfeasibility} we can conclude that, even though the explored scenarios are only a subject of investigation right now, and have no commercial use at the moment of writing this document, both autonomous cars and drones will surely be amongst the most important developments in the upcoming years. This makes the vulnerabilities on distance-bounding protocols a latent problem.\\
 
 As systems like the drone delivery and automated cars are not yet available to the open public, is it difficult to foresee what systems and protocols these platforms will use. However, in this document the usefulness of including distance-bounding protocols on them has been explained, focusing on the consequences distance-amplification attacks might have on them.\\
 

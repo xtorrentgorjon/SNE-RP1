@@ -28,7 +28,7 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {subsection}{\numberline {7.1}Introducing behaviour verification}{15}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {7.2}Utilize multiple distance-bounding signals}{15}
+\contentsline {subsection}{\numberline {7.2}Utilize multiple distance-bounding signals}{16}
 \defcounter {refsection}{0}\relax 
 \contentsline {subsection}{\numberline {7.3}Avoid centralized systems: distributed knowledge}{17}
 \defcounter {refsection}{0}\relax 

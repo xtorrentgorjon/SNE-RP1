@@ -410,11 +410,11 @@ This attack might prove considerably difficult to perform, but can have catastro
 
 In this section, some countermeasures to the studied relay attacks are proposed. These solutions can stack with one another and, in fact, it is recommended to do so, as each one of them provides an additional layer of security.\\
 
-These solutions do not need new protocols or hardware, and instead rely on the replication and addition of redundancy to provide protection against the fake increased distance reports. This means that the systems discussed on the first research question could implement these with minimal modifications.\\
+These solutions do not need new protocols or hardware, and instead rely on information replication and addition of redundancy to provide protection against the fake increased distance reports. This means that the systems discussed on Section \ref{sec:attackfeasibility} could implement these with minimal modifications.\\
 
 \subsection{Introducing behaviour verification}
 
-Nowadays storage is hardly a limitation for systems, as the price, size and weight of these components have decreased to the point where multiple gigabytes of information can be stored in inexpensive memories that have the size of a screw.\\
+Nowadays storage is hardly a limitation for systems, as the price, size and weight of these components have decreased to the point where multiple gigabytes of information can be stored in inexpensive memories that can have a size of a few millimeters.\\
 
 Therefore, storing information on the device about the recent location of one or multiple parties is feasible. Uncoordinated attacks would be prevented with this feature, although it does little to protect against carefully planned ones. All location systems must allow some degree of variation on the measurements, as there may be many reasons for a slight delay in a communication. By successfully using that error margin, an attacker could still attempt to fake distance reports increasingly over a period of time.\\
 
@@ -439,13 +439,15 @@ Figure \ref{fig:attackexample3} provides a graphical explanation of this defence
   \label{fig:attackexample3}
 \end{figure}
 
-This protection method has two major downsides. The first is that devices should carry more antennas, increasing their cost. Additionally, the device using this system needs to have a minimum size for it to be reliable, as the antennas need to be at a certain distance from one another to perform a correct triangulation (otherwise the error margins would outweigh the correctness of the obtained distance values).\\
+This protection method has two major downsides. The first is that devices should carry more antennas, increasing their cost and weight. Additionally, the device using this system needs to have a minimum size for it to be reliable, as the antennas need to be at a certain distance from one another to perform a correct triangulation (otherwise the error margins would outweigh the correctness of the obtained distance values).\\
 
 \subsection{Avoid centralized systems: distributed knowledge}
 
 When the first attack definition was proposed on Figure \ref{fig:attackexample1}, only one of the nodes was reporting its location to the other. Although this configuration may simplify the operation and decision-making of these nodes (by having only one node in the system taking decisions for the others), it also makes the system more vulnerable to relay attacks.\\
 
-If all nodes on the system can share information of the position of neighbour nodes between themselves, an attack on the system becomes considerably more difficult to perform. It is not required that one node checks the distance between him and another one with all the other nodes on the system, although every additional node verifying the information makes it harder to perform an attack on the system. Figure \ref{fig:attackexample4} has a graphic description of what this triangulation achieves.\\
+If all nodes on the system can share information of the position of neighbour nodes between themselves, an attack on the system becomes considerably more difficult to perform. It is not required that one node checks the distance between him and another one with all the other nodes on the system, although every additional node verifying the information makes it harder to perform an attack on the system.\\ 
+
+Figure \ref{fig:attackexample4} has a graphic description of what this triangulation achieves. An attacker would need to disrupt and replay many reports at the same time, which could be extremely difficult in an environment where the devices are moving in an unpredictable way.\\
 
   \begin{figure}[h!]
   \centering
@@ -458,9 +460,9 @@ Besides the added load in the communication this countermeasure produces, a majo
 
 \begin{enumerate}
   \item $N_{0}$ starts the distance-bounding protocol with $N_{1}$.
-  \item $N_{0}$ requests other nodes $M_{n}$ their information on the location of $N_{1}$. We note the ToF of these requests as $T_{1n}$. Assume $N_{0}$ knows the location of the other $M_{n}$ nodes, or that it also performs the distance-bounding protocol with them.
-  \item The nodes $M_{n}$ answer the request from $N_{0}$. This answer should include the current location of $N_{1}$, as well as its current speed and the vector of its current direction. The $M_{n}$ nodes can be aware of the speed and direction of $N_{1}$, if the system is using the behaviour verification proposed before in this Section. There will be a certain delay before the nodes $M_{n}$ can answer, as they have to decrypt the received message and process the answer, and then encrypt the answer again before it is sent. All this time $T_{2n}$ is not negligible, and they should measure it and sent it along with their answers. We note the ToF of the response of these messages as $T_{3n}$.
-  \item $N_{0}$ receives the $n$ answers. Then, for each answer $n$, it can calculate the approximate position $N_{1}$ had $\frac{T_{1n}+T_{2n}+T_{3n}}{2}$ seconds ago according to each node $M_{n}$, and using the location of each one of them, it can triangulate the data to obtain their positions relative to its own. Using the information about its speed and direction, it can also obtain an approximation of its current location. Then, it can compare that information to the obtained by using the distance-bounding protocol on Step 1, and determine if all the data is correct.
+  \item $N_{0}$ requests other nodes $M_{n}$ their information on the location of $N_{1}$ through an encrypted channel. We note the ToF of these requests as $T_{1n}$. We assume $N_{0}$ knows the location of the other $M_{n}$ nodes, or that it also performs the distance-bounding protocol with them.
+  \item The nodes $M_{n}$ answer the request from $N_{0}$. This answer should include the current location of $N_{1}$, as well as its current speed and the vector of its current direction. $M_{n}$ nodes can be aware of the speed and direction of $N_{1}$, if the system is using the behaviour verification proposed before in this Section. There will be a certain delay before the nodes $M_{n}$ can answer, as they have to decrypt the received message and process the answer, and then encrypt the answer again before it is sent. All this time $T_{2n}$ is not negligible in this high-accuracy environment, and they should measure it and sent it along with their answers. We note the ToF of the response of these messages as $T_{3n}$.
+  \item $N_{0}$ receives the $n$ answers. Then, for each answer $n$, it can calculate the approximate position $N_{1}$ had $\frac{T_{1n}+T_{3n}}{2}+T_{2n}$ seconds ago according to each node $M_{n}$, and using the location of each one of them, it can triangulate the data to obtain the position of $N_{1}$ relative to its own. Using the information about its speed and direction, it can also obtain an approximation of its current location. Then, it can compare that information to the obtained by using the distance-bounding protocol on Step 1, and determine if all the data is correct.
 \end{enumerate}
 
 

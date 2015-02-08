@@ -33,3 +33,5 @@
 \contentsline {subsection}{\numberline {7.3}Avoid centralized systems: distributed knowledge}{18}
 \defcounter {refsection}{0}\relax 
 \contentsline {section}{\numberline {8}Conclusions}{20}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {9}Future Work}{21}

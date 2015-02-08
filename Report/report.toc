@@ -4,34 +4,34 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {section}{\numberline {2}Related Work}{5}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {3}Research Questions}{5}
+\contentsline {section}{\numberline {3}Research Questions}{6}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {4}Methodology}{6}
+\contentsline {section}{\numberline {4}Methodology}{7}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {5}Distance-bounding protocols and alternative systems}{7}
+\contentsline {section}{\numberline {5}Distance-bounding protocols and alternative systems}{8}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {5.1}Distance-bounding protocols}{7}
+\contentsline {subsection}{\numberline {5.1}Distance-bounding protocols}{8}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {5.2}GPS location}{9}
+\contentsline {subsection}{\numberline {5.2}GPS location}{10}
 \defcounter {refsection}{0}\relax 
 \contentsline {subsection}{\numberline {5.3}Inertial Navigation System}{10}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {5.4}RADAR detection}{10}
+\contentsline {subsection}{\numberline {5.4}RADAR detection}{11}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {6}Feasibility of forged increased distance report relay attacks}{11}
+\contentsline {section}{\numberline {6}Feasibility of forged increased distance report relay attacks}{12}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {6.1}First example of real world attack: Autonomous cars}{12}
+\contentsline {subsection}{\numberline {6.1}First example of real world attack: Autonomous cars}{13}
 \defcounter {refsection}{0}\relax 
 \contentsline {subsection}{\numberline {6.2}Second example of real world attack: Drone MANETs}{13}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {7}Preventing relay attacks forging increased distance reports}{15}
+\contentsline {section}{\numberline {7}Preventing relay attacks forging increased distance reports}{16}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {7.1}Introducing behaviour verification}{15}
+\contentsline {subsection}{\numberline {7.1}Introducing behaviour verification}{16}
 \defcounter {refsection}{0}\relax 
 \contentsline {subsection}{\numberline {7.2}Utilize multiple distance-bounding signals}{16}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {7.3}Avoid centralized systems: distributed knowledge}{17}
+\contentsline {subsection}{\numberline {7.3}Avoid centralized systems: distributed knowledge}{18}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {8}Conclusions}{18}
+\contentsline {section}{\numberline {8}Conclusions}{20}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {9}Acknowledgements}{19}
+\contentsline {section}{\numberline {9}Future Work}{21}

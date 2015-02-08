@@ -513,6 +513,43 @@
   \field{year}{2012}
 \endentry
 
+\entry{navda2007using}{inproceedings}{}
+  \name{author}{4}{}{%
+    {{}%
+     {Navda}{N.}%
+     {Vishnu}{V.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Bohra}{B.}%
+     {Aniruddha}{A.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Ganguly}{G.}%
+     {Samrat}{S.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Rubenstein}{R.}%
+     {Dan}{D.}%
+     {}{}%
+     {}{}}%
+  }
+  \list{organization}{1}{%
+    {IEEE}%
+  }
+  \strng{namehash}{NV+1}
+  \strng{fullhash}{NVBAGSRD1}
+  \field{sortinit}{N}
+  \field{booktitle}{INFOCOM 2007. 26th IEEE International Conference on
+  Computer Communications. IEEE}
+  \field{pages}{2526\bibrangedash 2530}
+  \field{title}{Using channel hopping to increase 802.11 resilience to jamming
+  attacks}
+  \field{year}{2007}
+\endentry
+
 \entry{rasmussen2010realization}{inproceedings}{}
   \name{author}{2}{}{%
     {{}%

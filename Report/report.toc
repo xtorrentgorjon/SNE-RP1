@@ -10,7 +10,7 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {section}{\numberline {5}Distance-bounding protocols and alternative systems}{7}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {5.1}Distance bounding protocols}{7}
+\contentsline {subsection}{\numberline {5.1}Distance-bounding protocols}{7}
 \defcounter {refsection}{0}\relax 
 \contentsline {subsection}{\numberline {5.2}GPS location}{9}
 \defcounter {refsection}{0}\relax 
@@ -24,14 +24,14 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {subsection}{\numberline {6.2}Second example of real world attack: Drone MANETs}{13}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {7}Preventing forged increased distance report relay attacks}{15}
+\contentsline {section}{\numberline {7}Preventing relay attacks forging increased distance reports}{15}
 \defcounter {refsection}{0}\relax 
 \contentsline {subsection}{\numberline {7.1}Introducing behaviour verification}{15}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {7.2}Utilize multiple distance-bounding signals}{15}
+\contentsline {subsection}{\numberline {7.2}Utilize multiple distance-bounding signals}{16}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {7.3}Avoid centralized systems: distributed knowledge}{16}
+\contentsline {subsection}{\numberline {7.3}Avoid centralized systems: distributed knowledge}{17}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {8}Conclusions}{17}
+\contentsline {section}{\numberline {8}Conclusions}{18}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {9}Acknowledgements}{18}
+\contentsline {section}{\numberline {9}Acknowledgements}{19}
